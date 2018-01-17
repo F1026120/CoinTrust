@@ -8,8 +8,9 @@ namespace CoinTrust.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string id = "0")
         {
+            ViewBag.id = id;
             return View();
         }
 
@@ -24,6 +25,11 @@ namespace CoinTrust.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Market()
+        {
             return View();
         }
     }

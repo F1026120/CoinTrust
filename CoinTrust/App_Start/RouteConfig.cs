@@ -13,11 +13,44 @@ namespace CoinTrust
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            /*
+            home page
+            account 
+            deposit/withdraw
+            trade history
+            logon history
+            
+
+
+            About us
+            Login/Logout
+            Order Creat/Delete
+            Show order of market
+            
+
+            
+            */
+
+            routes.MapRoute(
+                name: "TransactionHistories",
+                url: "TransactionHistories/{action}/{id}",
+                defaults: new { controller = "TransactionHistories", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Account",
+                url: "Account/{action}",
+                defaults: new { controller = "Account", action = "Info" }
+            );
+
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }
