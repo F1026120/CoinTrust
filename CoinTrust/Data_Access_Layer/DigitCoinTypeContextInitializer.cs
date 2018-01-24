@@ -10,7 +10,7 @@ namespace CoinTrust.Data_Access_Layer
     {
         protected override void Seed(DigitCoinTypeContext context)
         {
-
+            var DigitCoinType = new List<DigitCoinType> { };
         }
     }
 }

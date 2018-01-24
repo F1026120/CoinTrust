@@ -57,6 +57,7 @@ namespace CoinTrust.Controllers
         [AllowAnonymous]
         public ActionResult SignIn()
         {
+
             return View();
         }
 

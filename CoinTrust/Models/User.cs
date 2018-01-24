@@ -37,5 +37,6 @@ namespace CoinTrust.Models
         public DateTime update_at { get; set; }
 
         public ICollection<TransactionHistory> TransactionHistories { get; set; }
+        
     }
 }

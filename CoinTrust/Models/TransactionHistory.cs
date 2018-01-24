@@ -22,7 +22,7 @@ namespace CoinTrust.Models
         /// </summary>
         [Required]
         public string user_email_ref { get; set; }
-
+        
         /// <summary>
         /// 用戶
         /// </summary>

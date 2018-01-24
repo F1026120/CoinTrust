@@ -16,11 +16,15 @@ namespace CoinTrust.Models
         [Required]
         public int id { get; set; }
 
-        [ForeignKey("Order")] // 這邊注意 user_id雖然是從Order拿 但是值仍是在User
+        [ForeignKey("order_id")] // 這邊注意 user_id雖然是從Order拿 但是值仍是在User
+        public User seller { get; set; }
+
         [Required]
         public int order_id { get; set; }
 
-        [ForeignKey("User")]
+        [ForeignKey("buyer_id")]
+        public User buyer { get; set; }
+
         [Required]
         public int buyer_id { get; set; }
 

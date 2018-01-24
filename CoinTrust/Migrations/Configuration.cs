@@ -5,14 +5,14 @@ namespace CoinTrust.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CoinTrust.Data_Access_Layer.TransactionHistoryContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CoinTrust.Data_Access_Layer.UserContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(CoinTrust.Data_Access_Layer.TransactionHistoryContext context)
+        protected override void Seed(CoinTrust.Data_Access_Layer.UserContext context)
         {
             //  This method will be called after migrating to the latest version.
 

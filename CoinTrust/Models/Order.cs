@@ -18,9 +18,11 @@ namespace CoinTrust.Models
         [ForeignKey("seller_id")]
         public User User { get; set; }
 
-        [ForeignKey("DigitCoinType")]
         [Required]
         public string digit_coin_type_id { get; set; }
+
+        [ForeignKey("digit_coin_type_id")]
+        public DigitCoinType digitCoinType { get; set; }
 
         [Required]
         public float price { get; set; }
@@ -37,9 +39,11 @@ namespace CoinTrust.Models
         [Required]        
         public string address { get; set; }// todo add regex to here
 
-        [ForeignKey("OrderStatus")]
         [Required]
         public int order_status_id { get; set; }
+
+        [ForeignKey("order_status_id")]
+        public OrderStatus OrderStatus { get; set; }
         
         public DateTime create_at { get; set; }
     }

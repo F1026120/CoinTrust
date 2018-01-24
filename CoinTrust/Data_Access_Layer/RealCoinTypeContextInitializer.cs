@@ -10,7 +10,7 @@ namespace CoinTrust.Data_Access_Layer
     {
         protected override void Seed(RealCoinTypeContext context)
         {
-
+            var RealCoinType = new List<RealCoinType> { };
         }
     }
 }

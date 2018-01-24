@@ -13,11 +13,15 @@ namespace CoinTrust.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
 
-        [ForeignKey("User")]
+        [ForeignKey("user_id")]
+        public User User { get; set; }
+
         [Required]
         public int user_id { get; set; }
 
-        [ForeignKey("RealCoinType")]
+        [ForeignKey("real_coin_type_id")]
+        public RealCoinType RealCoinType { get; set; }
+
         [Required]
         public int real_coin_type_id { get; set;}
 
