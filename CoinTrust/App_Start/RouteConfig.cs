@@ -9,6 +9,7 @@ namespace CoinTrust
 {
     public class RouteConfig
     {
+        [a]
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -33,7 +34,7 @@ namespace CoinTrust
 
             routes.MapRoute(
                 name: "TransactionHistories",
-                url: "TransactionHistories/{action}/{id}",
+                url: "user/info/CamelCaseTransactionHistories/{action}/{id}",
                 defaults: new { controller = "TransactionHistories", action = "Index", id = UrlParameter.Optional }
             );
 

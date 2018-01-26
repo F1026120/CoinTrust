@@ -4,12 +4,32 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CoinTrust.Models;
+using CoinTrust.Data_Access_Layer;
+
+/*
+[HttpPost]
+[ValidateAntiForgeryToken]
+public ActionResult Create([Bind(Include = "email,password,phone,certification,use_phone_authenticator,use_google_authenticator,create_at,update_at")] User user)
+{
+    if (ModelState.IsValid)
+    {
+        db.User.Add(user);
+        db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+    return View(user);
+}
+
+    */
+
 
 namespace CoinTrust.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private UserContext db = new UserContext();
         [AllowAnonymous]
         public ActionResult SignUp()
         {
@@ -19,8 +39,11 @@ namespace CoinTrust.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult SignUp(User user)
+        public ActionResult SignUp([Bind(Include = "email,password,phone")] User user)
         {
+            db.User.Add(user);
+            db.SaveChanges();
+            //return RedirectToAction("Index");
             return View();
         }
 
@@ -31,8 +54,8 @@ namespace CoinTrust.Controllers
         {
             return View();
         }
-        
-        public ActionResult ResetPassword()
+        [AllowAnonymous]
+        public ActionResult ResetPassword() //TEST用 記得要將ANONYMOUS 刪除
         {
             return View();
         }
@@ -77,5 +100,7 @@ namespace CoinTrust.Controllers
         {
             return View();
         }
+
+
     }
 }

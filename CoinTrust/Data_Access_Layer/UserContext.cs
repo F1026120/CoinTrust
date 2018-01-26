@@ -10,5 +10,10 @@ namespace CoinTrust.Data_Access_Layer
     public class UserContext : DbContext
     {
         public DbSet<User> User { get; set; }
+        
+        public UserContext()
+        {
+           // Database.SetInitializer(new UserInitializer() );
+        }
     }
 }

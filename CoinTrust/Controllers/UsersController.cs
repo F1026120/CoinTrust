@@ -51,6 +51,8 @@ namespace CoinTrust.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.create_at = DateTime.Now;
+                user.update_at = DateTime.Now;
                 db.User.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
