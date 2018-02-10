@@ -13,7 +13,7 @@ namespace CoinTrust.Controllers
 {
     public class UsersController : Controller
     {
-        private UserContext db = new UserContext();
+        private DatabaseContext db = new DatabaseContext();
 
         // GET: Users
         public ActionResult Index()

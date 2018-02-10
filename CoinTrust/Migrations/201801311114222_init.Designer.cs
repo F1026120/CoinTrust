@@ -7,13 +7,13 @@ namespace CoinTrust.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class user_seed_test : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(user_seed_test));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801240948043_user_seed_test"; }
+            get { return "201801311114222_init"; }
         }
         
         string IMigrationMetadata.Source

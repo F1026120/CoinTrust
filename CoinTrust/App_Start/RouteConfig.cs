@@ -9,7 +9,6 @@ namespace CoinTrust
 {
     public class RouteConfig
     {
-        [a]
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

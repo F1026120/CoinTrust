@@ -54,8 +54,7 @@ namespace CoinTrust.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        public ActionResult ResetPassword() //TEST用 記得要將ANONYMOUS 刪除
+        public ActionResult ResetPassword() 
         {
             return View();
         }

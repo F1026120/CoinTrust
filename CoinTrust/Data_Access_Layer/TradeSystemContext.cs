@@ -7,8 +7,11 @@ using CoinTrust.Models;
 
 namespace CoinTrust.Data_Access_Layer
 {
-    public class DigitCoinTypeContext : DbContext
+    public class TradeSystemContext : DbContext
     {
-        public DbSet<DigitCoinType> DigitCoinType { get; set; }
+        public DbSet<Trade> Trade { get; set; }
+
+        public DbSet<Order> Order { get; set; }
+
     }
 }

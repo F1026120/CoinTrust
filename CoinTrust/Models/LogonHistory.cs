@@ -15,7 +15,7 @@ namespace CoinTrust.Models
         public int id { get; set; }
 
         [Required]
-        public int user_id { get; set; }
+        public string user_id { get; set; }
 
         [ForeignKey("user_id")]
         public User User { get; set; }

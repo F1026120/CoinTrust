@@ -17,7 +17,7 @@ namespace CoinTrust.Models
         public User User { get; set; }
 
         [Required]
-        public int user_id { get; set; }
+        public string user_id { get; set; }
 
         [ForeignKey("real_coin_type_id")]
         public RealCoinType RealCoinType { get; set; }

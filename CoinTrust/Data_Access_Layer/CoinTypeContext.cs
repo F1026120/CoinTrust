@@ -7,8 +7,10 @@ using CoinTrust.Models;
 
 namespace CoinTrust.Data_Access_Layer
 {
-    public class RealCoinTypeContext : DbContext
+    public class CoinTypeContext : DbContext
     {
         public DbSet<RealCoinType> RealCoinType { get; set; }
+
+        public DbSet<DigitCoinType> DigitCoinType { get; set; }
     }
 }
