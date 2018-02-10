@@ -5,10 +5,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
+
 namespace CoinTrust.Data_Access_Layer
 {
-    public class TradeContext : DbContext
+    public class HistoryContext : DbContext
     {
-        public DbSet<Trade> Trade { get; set; }
+        public DbSet<TransactionHistory> TransactionHistories { get; set; }
+
+        public DbSet<LogonHistory> LogonHistory { get; set; }
     }
 }

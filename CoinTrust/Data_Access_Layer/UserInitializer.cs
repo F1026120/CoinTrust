@@ -14,7 +14,7 @@ namespace CoinTrust.Data_Access_Layer
         {
             var user = new List<User>
             {
-                new User{ email="123@234.com", password="123", phone="0912345678", create_at=DateTime.Now, certification=false, TransactionHistories=null, update_at=DateTime.Now, use_google_authenticator=false, use_phone_authenticator=false }
+                new User{ email="123@234.com", password="123", phone="0912345678", create_at=DateTime.Now, certification=false, update_at=DateTime.Now, use_google_authenticator=false, use_phone_authenticator=false }
             };
 
             user.ForEach(u => context.User.Add(u));
