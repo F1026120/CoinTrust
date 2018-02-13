@@ -12,14 +12,14 @@ namespace CoinTrust.Models
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int ID { get; set; }
 
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public string address_regex { get; set; }
+        public string AddressRegex { get; set; }
         
-        public string address_regex_checksum { get; set; }
+        public string AddressRegexChecksum { get; set; }
     }
 }

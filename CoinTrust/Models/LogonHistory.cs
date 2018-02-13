@@ -12,21 +12,21 @@ namespace CoinTrust.Models
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public int user_id { get; set; }
+        public string UserId { get; set; }
 
-        [ForeignKey("user_id")]
-        public User User { get; set; }
-
-        [Required]
-        public string ip_address { get; set; }
+        [ForeignKey("UserId")]
+        public Account User { get; set; }
 
         [Required]
-        public string locale { get; set; }
+        public string IpAddress { get; set; }
 
         [Required]
-        public DateTime logon_at { get; set; }
+        public string Locale { get; set; }
+
+        [Required]
+        public DateTime LogonAt { get; set; }
     }
 }

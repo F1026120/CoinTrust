@@ -16,7 +16,8 @@ namespace CoinTrust
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Data_Access_Layer.UserContext>());
+            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Data_Access_Layer.DatabaseContext>());
+            // Database.SetInitializer(new DataAccessLayer.TestCarContextInitializer());
         }
     }
 }

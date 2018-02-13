@@ -10,20 +10,21 @@ namespace CoinTrust.Models
     public class DigitCoinAccount
     {
         [Required]
-        public int user_id { get; set; }
+        public string UserId { get; set; }
 
-        [ForeignKey("user_id")]
-        public User User { get; set; }
+        [ForeignKey("UserId")]
+        public Account User { get; set; }
 
         [Required]
-        public int digit_coin_type_id { get; set; }
+        public int DigitCoinTypeId { get; set; }
 
-        [ForeignKey("digit_coin_type_id")]
+        [ForeignKey("DigitCoinTypeId")]
         [Required]
         public DigitCoinType DigitCoinType { get; set; }
 
         // todo add regex to here
+        [Key]
         [Required]
-        public string address { get; set; }
+        public string Address { get; set; }
     }
 }

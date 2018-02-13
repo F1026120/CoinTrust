@@ -7,16 +7,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoinTrust.Models
 {
-    public class RealCoinFunds
+    public class RealCoinFund
     {
+        [Key]
         [Required]
-        public int user_id { get; set; }
+        public string user_id { get; set; }
 
         [ForeignKey("user_id")]
-        public User User { get; set; }
+        public Account User { get; set; }
 
         [Required]
-        public string real_coin_type_id { get; set; }
+        public int real_coin_type_id { get; set; }
 
         [Required]
         [ForeignKey("real_coin_type_id")]

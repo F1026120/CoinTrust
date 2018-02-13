@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CoinTrust.Models;
-using CoinTrust.Data_Access_Layer;
+using CoinTrust.DataAccessLayer;
 
 /*
 [HttpPost]
@@ -29,7 +29,7 @@ namespace CoinTrust.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private UserContext db = new UserContext();
+        private DatabaseContext db = new DatabaseContext();
         [AllowAnonymous]
         public ActionResult SignUp()
         {
@@ -39,11 +39,18 @@ namespace CoinTrust.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult SignUp([Bind(Include = "email,password,phone")] User user)
+        public ActionResult SignUp([Bind(Include = "email,password,phone")] Account user)
         {
-            db.User.Add(user);
-            db.SaveChanges();
-            //return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (db.Account.Find(user.AccountId) != null)
+                    return View("Error");
+                db.Account.Add(user);
+                user.CreateAt = DateTime.Now;
+                user.UpdateAt = DateTime.Now;
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
             return View();
         }
 
@@ -54,15 +61,14 @@ namespace CoinTrust.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
-        public ActionResult ResetPassword() //TEST用 記得要將ANONYMOUS 刪除
+        public ActionResult ResetPassword() 
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ResetPassword(User user)
+        public ActionResult ResetPassword(Account user)
         {
             return View();
         }
@@ -72,7 +78,7 @@ namespace CoinTrust.Controllers
             return View();
         }
 
-        public ActionResult ForgotPassword(User user)
+        public ActionResult ForgotPassword(Account user)
         {
             return View();
         }
@@ -87,7 +93,7 @@ namespace CoinTrust.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult SignIn(User user)
+        public ActionResult SignIn(Account user)
         {
             //check user information and 
 

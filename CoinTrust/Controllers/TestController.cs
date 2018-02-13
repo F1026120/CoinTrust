@@ -11,7 +11,7 @@ using CoinTrust.Models;
 
 namespace CoinTrust.Controllers
 {
-    public class UsersController : Controller
+    public class TestController : Controller
     {
         private DatabaseContext db = new DatabaseContext();
 
@@ -125,6 +125,46 @@ namespace CoinTrust.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [AllowAnonymous]
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignUp([Bind(Include = "email,password,phone")] Account user)
+        {
+            db.Account.Add(user);
+            db.SaveChanges();
+            //return RedirectToAction("Index");
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult SignIn()
+        {
+
+            return View("../Account/SignIn");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignIn(Account user)
+        {
+            //check user information and 
+
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignOut()
+        {
+            return View();
         }
     }
 }

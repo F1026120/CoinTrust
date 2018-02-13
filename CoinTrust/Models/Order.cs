@@ -8,42 +8,45 @@ namespace CoinTrust.Models
 {
     public class Order
     {
+        /// <summary>
+        /// 每筆訂單代碼
+        /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public int seller_id { get; set; }
+        public string SellerId { get; set; }
 
         [ForeignKey("seller_id")]
-        public User User { get; set; }
+        public Account User { get; set; }
 
         [Required]
-        public string digit_coin_type_id { get; set; }
+        public int DigitCoinTypeId { get; set; }
 
         [ForeignKey("digit_coin_type_id")]
-        public DigitCoinType digitCoinType { get; set; }
+        public DigitCoinType DigitCoinType { get; set; }
 
         [Required]
-        public float price { get; set; }
+        public float Price { get; set; }
 
         [Required]
-        public float quantity { get; set; }
+        public float Quantity { get; set; }
 
         [Required]
-        public float remain_quantity { get; set; }
+        public float RemaiQuantity { get; set; }
 
         [Required]
-        public float min_quantity { get; set; }
+        public float MinQuantity { get; set; }
 
         [Required]        
-        public string address { get; set; }// todo add regex to here
-
+        public string Address { get; set; }// todo add regex to here
+        /*
         [Required]
-        public int order_status_id { get; set; }
-
+        public ICollection<OrderStatus> order_status_id { get; set; }
         [ForeignKey("order_status_id")]
-        public OrderStatus OrderStatus { get; set; }
+        */
+        public OrderStatus OrderStatusId { get; set; }
         
         public DateTime create_at { get; set; }
     }
