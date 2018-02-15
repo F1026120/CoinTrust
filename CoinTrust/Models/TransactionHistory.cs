@@ -34,7 +34,7 @@ namespace CoinTrust.Models
         /// 轉帳金額
         /// </summary>
         [Required]
-        public float Amount { get; set; }
+        public double Amount { get; set; }
         
         /// <summary>
         /// 交易狀態
@@ -47,11 +47,5 @@ namespace CoinTrust.Models
         /// </summary>
         [Required]
         public DateTime CreateAt { get; set; }
-
-        /// <summary>
-        /// 更新時間
-        /// </summary>
-        [Required]
-        public DateTime UpdateAt { get; set; }
     }
 }

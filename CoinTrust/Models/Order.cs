@@ -23,16 +23,16 @@ namespace CoinTrust.Models
         public DigitCoinType DigitCoinType { get; set; }
 
         [Required]
-        public float Price { get; set; }
+        public double Price { get; set; }
 
         [Required]
-        public float Quantity { get; set; }
+        public double Quantity { get; set; }
 
         [Required]
-        public float RemainQuantity { get; set; }
+        public double RemainQuantity { get; set; }
 
         [Required]
-        public float MinQuantity { get; set; }
+        public double MinQuantity { get; set; }
 
         [Required]        
         public string Address { get; set; }// todo add regex to here

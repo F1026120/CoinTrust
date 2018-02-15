@@ -25,10 +25,10 @@ namespace CoinTrust.Models
         public Order Order { get; set; }
 
         [Required]
-        public float Quantity { get; set; }
+        public double Quantity { get; set; }
 
         [Required]
-        public float Price { get; set; }
+        public double Price { get; set; }
 
         [Required]
         public TradeStatus TradeStatus { get; set; }

@@ -24,6 +24,6 @@ namespace CoinTrust.Models
         public CoinStatus CoinStatus { get; set; }
 
         [Required]
-        public float Amount { get; set; }
+        public double Amount { get; set; }
     }
 }
