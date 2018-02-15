@@ -14,10 +14,10 @@ namespace CoinTrust.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CarId { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public TestCarOwner test_car_owner { get; set; }
+        public TestCarOwner TestCarOwner { get; set; }
 
-        public ICollection<TestCarWheel> test_car_wheel { get; set; } //cascade
+        public ICollection<TestCarWheel> TestCarWheel { get; set; } //cascade
     }
 }

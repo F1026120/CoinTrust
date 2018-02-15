@@ -9,12 +9,12 @@ namespace CoinTrust.Models
 {
     public class TestCarKey
     {
-        [Key, ForeignKey("test_car")]
+        [Key, ForeignKey("TestCar")]
         [Required]
         public int TestCarId { get; set; }
         
-        public string type { get; set; }
+        public string Type { get; set; }
 
-        public TestCar test_car { get; set; }
+        public TestCar TestCar { get; set; }
     }
 }
