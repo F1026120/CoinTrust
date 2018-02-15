@@ -12,6 +12,7 @@ namespace CoinTrust.Models
         /// 每筆訂單代碼
         /// </summary>
         [Key]
+        [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
 
@@ -44,7 +45,5 @@ namespace CoinTrust.Models
 
         [Required]
         public DateTime UpdateAt { get; set; }
-
-        public ICollection<Trade> Trade { get; set; }
     }
 }

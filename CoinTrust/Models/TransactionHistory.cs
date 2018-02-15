@@ -14,6 +14,7 @@ namespace CoinTrust.Models
         /// id
         /// </summary>
         [Key]
+        [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TransactionHistoryId { get; set; }
 
@@ -46,5 +47,11 @@ namespace CoinTrust.Models
         /// </summary>
         [Required]
         public DateTime CreateAt { get; set; }
+
+        /// <summary>
+        /// 更新時間
+        /// </summary>
+        [Required]
+        public DateTime UpdateAt { get; set; }
     }
 }

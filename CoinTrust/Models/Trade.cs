@@ -14,11 +14,10 @@ namespace CoinTrust.Models
         /// </summary>
         [Key]
         [Required]
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int TradeId { get; set; }
 
-        [Required]
-        public Account Seller { get; set; }
-
+        // 這邊也許與Order的Seller有潛在的問題
         [Required]
         public Account Buyer { get; set; }
         
