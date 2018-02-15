@@ -30,7 +30,5 @@ namespace CoinTrust.DataAccessLayer
         public DbSet<TransactionHistory> TransactionHistory { get; set; }
 
         public System.Data.Entity.DbSet<CoinTrust.ViewModels.ResetPassword> ResetPasswords { get; set; }
-
-        public System.Data.Entity.DbSet<CoinTrust.Models.TestCar> TestCars { get; set; }
     }
 }
