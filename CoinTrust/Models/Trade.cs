@@ -14,36 +14,27 @@ namespace CoinTrust.Models
         /// </summary>
         [Key]
         [Required]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public string seller_id { get; set; }
-
-        [ForeignKey("seller_id")]
-        public virtual Account seller { get; set; }
+        public Account Seller { get; set; }
 
         [Required]
-        public string buyer_id { get; set; }
-
-        [ForeignKey("buyer_id")]
-        public virtual Account buyer { get; set; }
+        public Account Buyer { get; set; }
         
         [Required]
-        public string order_id { get; set; }
-
-        [ForeignKey("order_id")]
-        public virtual Order order { get; set; }
+        public Order Order { get; set; }
 
         [Required]
-        public float quantity { get; set; }
+        public float Quantity { get; set; }
 
         [Required]
-        public float price { get; set; }
+        public float Price { get; set; }
 
         [Required]
-        public TradeStatus trade_status { get; set; }
+        public TradeStatus TradeStatus { get; set; }
 
         [Required]
-        public DateTime create_at { get; set; }
+        public DateTime CreateAt { get; set; }
     }
 }

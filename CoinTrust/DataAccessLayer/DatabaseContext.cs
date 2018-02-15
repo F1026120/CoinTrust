@@ -11,7 +11,7 @@ namespace CoinTrust.DataAccessLayer
     {
         public DbSet<Account> Account{ get; set; }
 
-        public DbSet<LogonHistory> LogonHistory { get; set; }
+        public DbSet<LoginHistory> LoginHistory { get; set; }
 
         public DbSet<DigitCoinAccount> DigitCoinAccount { get; set; }
 

@@ -11,22 +11,15 @@ namespace CoinTrust.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int RealCoinAccountId { get; set; }
 
-        [ForeignKey("user_id")]
+        [Required]
+        public string Address { get; set; }
+
+        [Required]
         public Account User { get; set; }
 
         [Required]
-        public string user_id { get; set; }
-
-        [ForeignKey("real_coin_type_id")]
         public RealCoinType RealCoinType { get; set; }
-
-        [Required]
-        public int real_coin_type_id { get; set;}
-
-        // todo add regex to here
-        [Required]
-        public string address { get; set; }
     }
 }

@@ -42,5 +42,17 @@ namespace CoinTrust.Models
         public DateTime UpdateAt { get; set; }
 
         public ICollection<TransactionHistory> TransactionHistory { get; set; }
+
+        public ICollection<DigitCoinAccount> DigitCoinAccount { get; set; }
+
+        public ICollection<RealCoinAccount> RealCoinAccount { get; set; }
+
+        public ICollection<Order> Order { get; set; }
+
+        public ICollection<Trade> Trade { get; set; }
+
+        public ICollection<LoginHistory> LoginHistory { get; set; }
+
+        public ICollection<RealCoinFund> RealCoinFund { get; set; }
     }
 }
