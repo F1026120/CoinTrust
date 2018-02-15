@@ -47,5 +47,11 @@ namespace CoinTrust.Models
         /// </summary>
         [Required]
         public DateTime CreateAt { get; set; }
+
+        /// <summary>
+        /// 更新時間
+        /// </summary>
+        [Required]
+        public DateTime UpdateAt { get; set; }
     }
 }

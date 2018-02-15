@@ -7,6 +7,7 @@ namespace CoinTrust.Migrations.Database
     {
         public override void Up()
         {
+            AddColumn("dbo.TransactionHistories", "UpdateAt", c => c.DateTime(nullable: false));
             AlterColumn("dbo.Orders", "Price", c => c.Double(nullable: false));
             AlterColumn("dbo.Orders", "Quantity", c => c.Double(nullable: false));
             AlterColumn("dbo.Orders", "RemainQuantity", c => c.Double(nullable: false));
@@ -27,6 +28,8 @@ namespace CoinTrust.Migrations.Database
             AlterColumn("dbo.Orders", "RemainQuantity", c => c.Single(nullable: false));
             AlterColumn("dbo.Orders", "Quantity", c => c.Single(nullable: false));
             AlterColumn("dbo.Orders", "Price", c => c.Single(nullable: false));
+            DropColumn("dbo.TransactionHistories", "UpdateAt");
+            DropColumn("dbo.Trades", "Buyer_AccountId");
         }
     }
 }
