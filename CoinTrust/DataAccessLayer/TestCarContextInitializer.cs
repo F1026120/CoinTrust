@@ -9,96 +9,101 @@ namespace CoinTrust.DataAccessLayer
 {
     public class TestCarContextInitializer : DropCreateDatabaseAlways<TestCarContext>
     {
-        //    protected override void Seed(CoinTrust.DataAccessLayer.TestCarContext context)
-        //    {
-        //        base.Seed(context);
-        //        //  This method will be called after migrating to the latest version.
+        protected override void Seed(CoinTrust.DataAccessLayer.TestCarContext context)
+        {
+            //This method will be called after migrating to the latest version.
+           
+            //You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //to avoid creating duplicate seed data.
+           
+            //This method will be called after migrating to the latest version.
+           
+            //You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //to avoid creating duplicate seed data.
 
-        //        //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-        //        //  to avoid creating duplicate seed data.
+            /*
+             * Car  Owner   type    wheel
+             * gtr  YY      C       16 17
+             * gt86 PL      D       17 18
+             * z4   YY      B       16 18
+             * m5   YY      A       17 19
+             */
 
-        //        //  This method will be called after migrating to the latest version.
+            TestCar gtr = new TestCar();
+            TestCar gt86 = new TestCar();
+            TestCar z4 = new TestCar();
+            TestCar m5 = new TestCar();
 
-        //        //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-        //        //  to avoid creating duplicate seed data.
-        //        TestCar gtr = new TestCar();
-        //        TestCar gt86 = new TestCar();
-        //        TestCar z4 = new TestCar();
-        //        TestCar m5 = new TestCar();
+            TestCarKey gtrk = new TestCarKey();
+            TestCarKey gt86k = new TestCarKey();
+            TestCarKey z4k = new TestCarKey();
+            TestCarKey m5k = new TestCarKey();
 
-        //        TestCarKey gtrk = new TestCarKey();
-        //        TestCarKey gt86k = new TestCarKey();
-        //        TestCarKey z4k = new TestCarKey();
-        //        TestCarKey m5k = new TestCarKey();
+            TestCarOwner YY = new TestCarOwner();
+            TestCarOwner PL = new TestCarOwner();
 
-        //        TestCarOwner yy = new TestCarOwner();
-        //        TestCarOwner pl = new TestCarOwner();
+            TestCarWheel wh16 = new TestCarWheel();
+            TestCarWheel wh17 = new TestCarWheel();
+            TestCarWheel wh18 = new TestCarWheel();
+            TestCarWheel wh19 = new TestCarWheel();
 
-        //        TestCarWheel w1 = new TestCarWheel();
-        //        TestCarWheel w2 = new TestCarWheel();
-        //        TestCarWheel w3 = new TestCarWheel();
-        //        TestCarWheel w4 = new TestCarWheel();
-        //        TestCarWheel w5 = new TestCarWheel();
-        //        TestCarWheel w6 = new TestCarWheel();
-        //        TestCarWheel w7 = new TestCarWheel();
-        //        TestCarWheel w8 = new TestCarWheel();
-        //        var gtrwl = new List<TestCarWheel>
-        //        {
-        //            w1,
-        //            w2
-        //        };
-        //        var gt86wl = new List<TestCarWheel>
-        //        {
-        //            w3,
-        //            w4
-        //        };
-        //        var z4wl = new List<TestCarWheel>
-        //        {
-        //            w5,
-        //            w6
-        //        };
-        //        var m5rwl = new List<TestCarWheel>
-        //        {
-        //            w7,
-        //            w8
-        //        };
-        //        //一個人可以有很多車
-        //        gtr.test_car_owner_id = yy.id;
-        //        gt86.test_car_owner_id = pl.id;
-        //        z4.test_car_owner_id = yy.id;
-        //        m5.test_car_owner_id = pl.id;
+            gtr.Name = "GTR";
+            gtr.TestCarWheel = new List<TestCarWheel> { wh16, wh17 };
+            gtr.TestCarOwner = YY;
 
-        //        //一台車只有一支鑰匙
-        //        gtrk.test_car_id = gtr.id;
-        //        gt86k.test_car_id = gt86.id;
-        //        z4k.test_car_id = z4.id;
-        //        m5k.test_car_id = m5.id;
-        //        //每台車都可以有很多個輪子
+            gt86.Name = "GT86";
+            gt86.TestCarWheel = new List<TestCarWheel> { wh17, wh18 };
+            gt86.TestCarOwner = PL;
 
+            z4.Name = "Z4";
+            z4.TestCarWheel = new List<TestCarWheel> { wh16, wh18 };
+            z4.TestCarOwner = YY;
 
-        //        context.TestCar.Add(gtr);
-        //        context.TestCar.Add(gt86);
-        //        context.TestCar.Add(z4);
-        //        context.TestCar.Add(m5);
+            m5.Name = "M5";
+            m5.TestCarWheel = new List<TestCarWheel> { wh17, wh19 };
+            m5.TestCarOwner = YY;
 
-        //        context.TestCarKey.Add(gtrk);
-        //        context.TestCarKey.Add(gt86k);
-        //        context.TestCarKey.Add(z4k);
-        //        context.TestCarKey.Add(m5k);
+            YY.TestCar = new List<TestCar> { gtr, z4, m5 };
+            YY.Name = "Yung Yuan";
+            PL.TestCar = new List<TestCar> { gt86 };
+            PL.Name = "Pin Lun";
 
-        //        context.TestCarOwner.Add(yy);
-        //        context.TestCarOwner.Add(pl);
+            wh16.TestCar = new List<TestCar> { gtr, z4 };
+            wh16.Size = 16;
+            wh17.TestCar = new List<TestCar> { gtr, gt86, m5 };
+            wh17.Size = 17;
+            wh18.TestCar = new List<TestCar> { gt86, z4 };
+            wh18.Size = 18;
+            wh19.TestCar = new List<TestCar> { m5 };
+            wh19.Size = 19;
 
-        //        context.TestCarWheel.Add(w1);
-        //        context.TestCarWheel.Add(w2);
-        //        context.TestCarWheel.Add(w3);
-        //        context.TestCarWheel.Add(w4);
-        //        context.TestCarWheel.Add(w5);
-        //        context.TestCarWheel.Add(w6);
-        //        context.TestCarWheel.Add(w7);
-        //        context.TestCarWheel.Add(w8);
+            context.TestCarOwner.Add(YY);
+            context.TestCarOwner.Add(PL);
 
-        //        context.SaveChanges();
-        //    }
-    }
+            context.TestCarWheel.Add(wh16);
+            context.TestCarWheel.Add(wh17);
+            context.TestCarWheel.Add(wh18);
+            context.TestCarWheel.Add(wh19);
+
+            context.TestCar.Add(gtr);
+            context.TestCar.Add(gt86);
+            context.TestCar.Add(z4);
+            context.TestCar.Add(m5);
+            context.SaveChanges();
+
+            gtrk.Type = "C";
+            gtrk.TestCarId = gtr.CarId;
+            gt86k.Type = "D";
+            gt86k.TestCarId = gt86.CarId;
+            z4k.Type = "B";
+            z4k.TestCarId = z4.CarId;
+            m5k.Type = "A";
+            m5k.TestCarId = m5.CarId;
+            context.TestCarKey.Add(gtrk);
+            context.TestCarKey.Add(gt86k);
+            context.TestCarKey.Add(z4k);
+            context.TestCarKey.Add(m5k);
+            context.SaveChanges();
+        }
+        }
 }
