@@ -28,9 +28,6 @@ namespace CoinTrust.Models
         public double Quantity { get; set; }
 
         [Required]
-        public double Price { get; set; }
-
-        [Required]
         public TradeStatus TradeStatus { get; set; }
 
         [Required]
