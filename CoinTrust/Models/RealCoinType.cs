@@ -16,8 +16,5 @@ namespace CoinTrust.Models
 
         [Required]
         public string Name { get; set; }
-
-        [Required]
-        public string AddressRegex { get; set; }
     }
 }
