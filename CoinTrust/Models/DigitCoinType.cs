@@ -12,14 +12,12 @@ namespace CoinTrust.Models
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int DigitCoinTypeId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
         [Required]
         public string AddressRegex { get; set; }
-        
-        public string AddressRegexChecksum { get; set; }
     }
 }

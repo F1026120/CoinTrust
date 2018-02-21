@@ -11,22 +11,19 @@ namespace CoinTrust.Models
     {
         [Key]
         [Required]
-        public string user_id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int RealCoinFundId { get; set; }
 
-        [ForeignKey("user_id")]
+        [Required]
         public Account User { get; set; }
 
         [Required]
-        public int real_coin_type_id { get; set; }
+        public RealCoinType RealCoinType { get; set; }
 
         [Required]
-        [ForeignKey("real_coin_type_id")]
-        public RealCoinType realCoinType { get; set; }
+        public CoinStatus CoinStatus { get; set; }
 
         [Required]
-        public CoinStatus coin_status { get; set; }
-
-        [Required]
-        public float amount { get; set; }
+        public double Amount { get; set; }
     }
 }

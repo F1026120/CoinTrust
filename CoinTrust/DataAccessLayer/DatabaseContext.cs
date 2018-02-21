@@ -11,7 +11,7 @@ namespace CoinTrust.DataAccessLayer
     {
         public DbSet<Account> Account{ get; set; }
 
-        public DbSet<LogonHistory> LogonHistory { get; set; }
+        public DbSet<LoginHistory> LoginHistory { get; set; }
 
         public DbSet<DigitCoinAccount> DigitCoinAccount { get; set; }
 
@@ -30,7 +30,5 @@ namespace CoinTrust.DataAccessLayer
         public DbSet<TransactionHistory> TransactionHistory { get; set; }
 
         public System.Data.Entity.DbSet<CoinTrust.ViewModels.ResetPassword> ResetPasswords { get; set; }
-
-        public System.Data.Entity.DbSet<CoinTrust.Models.TestCar> TestCars { get; set; }
     }
 }

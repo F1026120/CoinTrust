@@ -9,22 +9,18 @@ namespace CoinTrust.Models
 {
     public class DigitCoinAccount
     {
+        [Key]
         [Required]
-        public string UserId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int DigitCoinAccountId { get; set; }
 
-        [ForeignKey("UserId")]
+        [Required]
+        public string Address { get; set; }
+
+        [Required]
         public Account User { get; set; }
 
         [Required]
-        public int DigitCoinTypeId { get; set; }
-
-        [ForeignKey("DigitCoinTypeId")]
-        [Required]
         public DigitCoinType DigitCoinType { get; set; }
-
-        // todo add regex to here
-        [Key]
-        [Required]
-        public string Address { get; set; }
     }
 }

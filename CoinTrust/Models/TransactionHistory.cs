@@ -14,49 +14,44 @@ namespace CoinTrust.Models
         /// id
         /// </summary>
         [Key]
+        [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        public int TransactionHistoryId { get; set; }
 
         /// <summary>
         /// the primary key of User table
         /// </summary>
         [Required]
-        public string user_id { get; set; }
+        public Account User { get; set; }
         
-        /// <summary>
-        /// 用戶
-        /// </summary>
-        [ForeignKey("user_id")]
-        public Account user { get; set; }
-        
-        /// <summary>
-        /// the primary key of RealCoinType table
-        /// </summary>
-        [Required]
-        public int real_coin_type_id { get; set; }
-
         /// <summary>
         /// 真實貨幣幣種
         /// </summary>
-        [ForeignKey("real_coin_type_id")]
-        public RealCoinType real_coin_type { get; set; }
+        [Required]
+        public RealCoinType RealCoinType { get; set; }
         
         /// <summary>
         /// 轉帳金額
         /// </summary>
         [Required]
-        public float amount { get; set; }
+        public double Amount { get; set; }
         
         /// <summary>
         /// 交易狀態
         /// </summary>
         [Required]
-        public TransactionStatus transaction_status { get; set; }
+        public TransactionStatus TransactionStatus { get; set; }
         
         /// <summary>
         /// 轉帳時間
         /// </summary>
         [Required]
-        public DateTime create_at { get; set; }
+        public DateTime CreateAt { get; set; }
+
+        /// <summary>
+        /// 更新時間
+        /// </summary>
+        [Required]
+        public DateTime UpdateAt { get; set; }
     }
 }

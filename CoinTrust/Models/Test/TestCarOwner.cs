@@ -14,8 +14,8 @@ namespace CoinTrust.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OwnerId { get; set; }
 
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public ICollection<TestCar> test_car { get; set; }
+        public ICollection<TestCar> TestCar { get; set; }
     }
 }

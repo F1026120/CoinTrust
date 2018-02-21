@@ -1,9 +1,9 @@
-namespace CoinTrust.Migrations
+namespace CoinTrust.Migrations.TestCar
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _1 : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -12,19 +12,19 @@ namespace CoinTrust.Migrations
                 c => new
                     {
                         CarId = c.Int(nullable: false, identity: true),
-                        name = c.String(),
-                        test_car_owner_OwnerId = c.Int(),
+                        Name = c.String(),
+                        TestCarOwner_OwnerId = c.Int(),
                     })
                 .PrimaryKey(t => t.CarId)
-                .ForeignKey("dbo.TestCarOwners", t => t.test_car_owner_OwnerId)
-                .Index(t => t.test_car_owner_OwnerId);
+                .ForeignKey("dbo.TestCarOwners", t => t.TestCarOwner_OwnerId)
+                .Index(t => t.TestCarOwner_OwnerId);
             
             CreateTable(
                 "dbo.TestCarOwners",
                 c => new
                     {
                         OwnerId = c.Int(nullable: false, identity: true),
-                        name = c.String(),
+                        Name = c.String(),
                     })
                 .PrimaryKey(t => t.OwnerId);
             
@@ -33,7 +33,7 @@ namespace CoinTrust.Migrations
                 c => new
                     {
                         TestCarWheelId = c.Int(nullable: false, identity: true),
-                        size = c.Int(nullable: false),
+                        Size = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.TestCarWheelId);
             
@@ -42,7 +42,7 @@ namespace CoinTrust.Migrations
                 c => new
                     {
                         TestCarId = c.Int(nullable: false),
-                        type = c.String(),
+                        Type = c.String(),
                     })
                 .PrimaryKey(t => t.TestCarId)
                 .ForeignKey("dbo.TestCars", t => t.TestCarId)
@@ -68,11 +68,11 @@ namespace CoinTrust.Migrations
             DropForeignKey("dbo.TestCarKeys", "TestCarId", "dbo.TestCars");
             DropForeignKey("dbo.TestCarWheelTestCars", "TestCar_CarId", "dbo.TestCars");
             DropForeignKey("dbo.TestCarWheelTestCars", "TestCarWheel_TestCarWheelId", "dbo.TestCarWheels");
-            DropForeignKey("dbo.TestCars", "test_car_owner_OwnerId", "dbo.TestCarOwners");
+            DropForeignKey("dbo.TestCars", "TestCarOwner_OwnerId", "dbo.TestCarOwners");
             DropIndex("dbo.TestCarWheelTestCars", new[] { "TestCar_CarId" });
             DropIndex("dbo.TestCarWheelTestCars", new[] { "TestCarWheel_TestCarWheelId" });
             DropIndex("dbo.TestCarKeys", new[] { "TestCarId" });
-            DropIndex("dbo.TestCars", new[] { "test_car_owner_OwnerId" });
+            DropIndex("dbo.TestCars", new[] { "TestCarOwner_OwnerId" });
             DropTable("dbo.TestCarWheelTestCars");
             DropTable("dbo.TestCarKeys");
             DropTable("dbo.TestCarWheels");

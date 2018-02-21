@@ -10,6 +10,6 @@ namespace CoinTrust.ViewModels
     {
         public Account User { get; set; }
 
-        public List<LogonHistory> LogonHistory { get; set; }
+        public List<LoginHistory> LoginHistory { get; set; }
     }
 }

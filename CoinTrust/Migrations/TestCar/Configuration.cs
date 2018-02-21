@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using CoinTrust.Models;
-
-namespace CoinTrust.DataAccessLayer
+namespace CoinTrust.Migrations.TestCar
 {
-    public class TestCarContextInitializer : DropCreateDatabaseAlways<TestCarContext>
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+    using CoinTrust.Models;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<CoinTrust.DataAccessLayer.TestCarContext>
     {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+            MigrationsDirectory = @"Migrations\TestCar";
+        }
+
         protected override void Seed(CoinTrust.DataAccessLayer.TestCarContext context)
         {
-            //This method will be called after migrating to the latest version.
-           
-            //You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //to avoid creating duplicate seed data.
-           
-            //This method will be called after migrating to the latest version.
-           
-            //You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //to avoid creating duplicate seed data.
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
 
             /*
              * Car  Owner   type    wheel
@@ -65,12 +66,12 @@ namespace CoinTrust.DataAccessLayer
 
             YY.TestCar = new List<TestCar> { gtr, z4, m5 };
             YY.Name = "Yung Yuan";
-            PL.TestCar = new List<TestCar> { gt86 };
+            PL.TestCar = new List<TestCar> { gt86};
             PL.Name = "Pin Lun";
 
             wh16.TestCar = new List<TestCar> { gtr, z4 };
             wh16.Size = 16;
-            wh17.TestCar = new List<TestCar> { gtr, gt86, m5 };
+            wh17.TestCar = new List<TestCar> { gtr, gt86 ,m5};
             wh17.Size = 17;
             wh18.TestCar = new List<TestCar> { gt86, z4 };
             wh18.Size = 18;
@@ -105,5 +106,5 @@ namespace CoinTrust.DataAccessLayer
             context.TestCarKey.Add(m5k);
             context.SaveChanges();
         }
-        }
+    }
 }

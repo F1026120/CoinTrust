@@ -12,42 +12,38 @@ namespace CoinTrust.Models
         /// 每筆訂單代碼
         /// </summary>
         [Key]
+        [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int OrderId { get; set; }
 
         [Required]
-        public string SellerId { get; set; }
-
-        [ForeignKey("seller_id")]
-        public Account User { get; set; }
+        public Account Seller { get; set; }
 
         [Required]
-        public int DigitCoinTypeId { get; set; }
-
-        [ForeignKey("digit_coin_type_id")]
         public DigitCoinType DigitCoinType { get; set; }
 
         [Required]
-        public float Price { get; set; }
+        public double Price { get; set; }
 
         [Required]
-        public float Quantity { get; set; }
+        public double Quantity { get; set; }
 
         [Required]
-        public float RemaiQuantity { get; set; }
+        public double RemainQuantity { get; set; }
 
         [Required]
-        public float MinQuantity { get; set; }
+        public double MinQuantity { get; set; }
 
         [Required]        
         public string Address { get; set; }// todo add regex to here
-        /*
+
         [Required]
-        public ICollection<OrderStatus> order_status_id { get; set; }
-        [ForeignKey("order_status_id")]
-        */
-        public OrderStatus OrderStatusId { get; set; }
+        public OrderStatus OrderStatus { get; set; }
         
-        public DateTime create_at { get; set; }
+        [Required]
+        public DateTime CreateAt { get; set; }
+
+        [Required]
+        public DateTime UpdateAt { get; set; }
     }
 }

@@ -14,8 +14,8 @@ namespace CoinTrust.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TestCarWheelId { get; set; }
         
-        public int size { get; set; }
+        public int Size { get; set; }
 
-        public ICollection<TestCar> test_car { get; set; }
+        public ICollection<TestCar> TestCar { get; set; }
     }
 }

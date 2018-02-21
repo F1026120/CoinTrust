@@ -40,7 +40,5 @@ namespace CoinTrust.Models
 
         [Required]
         public DateTime UpdateAt { get; set; }
-
-        public ICollection<TransactionHistory> TransactionHistory { get; set; }
     }
 }
