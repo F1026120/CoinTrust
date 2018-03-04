@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using CoinTrust.Models;
+using CoinTrust.ViewModels;
 
 namespace CoinTrust.DataAccessLayer
 {
@@ -29,6 +30,8 @@ namespace CoinTrust.DataAccessLayer
 
         public DbSet<TransactionHistory> TransactionHistory { get; set; }
 
-        public System.Data.Entity.DbSet<CoinTrust.ViewModels.ResetPassword> ResetPasswords { get; set; }
+        public DbSet<ResetPassword> ResetPasswords { get; set; }
+
+        public DbSet<ForgotPassword> ForgotPasswords { get; set; }
     }
 }
