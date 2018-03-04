@@ -21,9 +21,9 @@ namespace CoinTrust.DataAccessLayer
             //You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //to avoid creating duplicate seed data.
 
-            Account yy = new Account { Certification = false, Password = "123456", Phone = "0912345678", UseGoogleAuthenticator = true, UsePhoneAuthenticator = true, CreateAt = DateTime.Now, UpdateAt = DateTime.Now };
+            Account yy = new Account { Certification = false, Password = "123456", Phone = "0912345678", UseGoogleAuthenticator = true, UsePhoneAuthenticator = true, CreateAt = DateTime.Now, UpdateAt = DateTime.Now, ConfirmPassword = "123456", AccountId = "test@cointrust.com" };
             context.Account.Add(yy);
-            Account pl = new Account { Certification = false, Password = "654321", Phone = "0987654321", UseGoogleAuthenticator = true, UsePhoneAuthenticator = true, CreateAt = DateTime.Now, UpdateAt = DateTime.Now };
+            Account pl = new Account { Certification = false, Password = "654321", Phone = "0987654321", UseGoogleAuthenticator = true, UsePhoneAuthenticator = true, CreateAt = DateTime.Now, UpdateAt = DateTime.Now, ConfirmPassword = "654321", AccountId = "test2@cointrust.com" };
             context.Account.Add(pl);
             context.SaveChanges();
 
