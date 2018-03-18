@@ -3,15 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+
+using CoinTrust.ViewModels;
+using CoinTrust.Models;
+using CoinTrust.DataAccessLayer;
 
 namespace CoinTrust.Controllers
 {
     [Authorize]
     public class AccountInfoController : Controller
     {
+        private DatabaseContext db = new DatabaseContext();
+
         public ActionResult Info()
         {
-            return View();
+            //var accountId = Response.Cookies[FormsAuthentication.FormsCookieName]["AccountId"];
+            //var accountId2 = Request.Cookies[FormsAuthentication.FormsCookieName]["AccountId"];
+            //var accountId3 = Response.Cookies["AccountId"];
+            //var accountId4 = Request.Cookies["AccountId"];
+
+
+            var model = new AccountInfo();
+            //model.User = db.Account.Find(accountId);
+            //model.LoginHistory = db.LoginHistory.Where(lh => lh.User.AccountId == accountId).ToList();
+
+            return View(model);
         }
 
         [HttpPost]

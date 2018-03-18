@@ -20,7 +20,7 @@ namespace CoinTrust.Models
         [Required]
         public string Ip { get; set; }
 
-        [Required]
+        
         public string Locale { get; set; }
 
         [Required]

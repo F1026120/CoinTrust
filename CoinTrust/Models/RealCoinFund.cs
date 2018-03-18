@@ -13,7 +13,7 @@ namespace CoinTrust.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RealCoinFundId { get; set; }
-
+        
         [Required]
         public Account User { get; set; }
 
