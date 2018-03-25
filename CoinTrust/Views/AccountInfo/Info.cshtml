@@ -1,7 +1,44 @@
-﻿
+﻿@model CoinTrust.ViewModels.AccountInfo
 @{
     ViewBag.Title = "Info";
 }
 
-<h2>Info</h2>
+<h2>使用者資料</h2>
 
+<h3>使用者帳號： @Model.User.AccountId</h3>
+<h3>使用者電話： @Model.User.Phone</h3>
+
+@Html.Partial("_PhoneAuthenticator", Model)
+<h2>近五次登入</h2>
+<table class="table">
+    
+    @for (int i = 0; i < 5; i++)
+    {
+        <tr>
+            <td>@Model.LoginHistory[i].LoginAt</td>
+            <td>@Model.LoginHistory[i].Ip</td>
+            <td>@Model.LoginHistory[i].Locale</td>
+        </tr>
+
+
+    }
+
+
+
+
+    @*@foreach (var logonHistory in Model.LoginHistory)
+        {
+            <tr>
+                <td>@logonHistory.LoginAt</td>
+                <td>@logonHistory.Ip</td>
+                <td>@logonHistory.Locale</td>
+            </tr>
+        }*@
+
+</table>
+
+@section scripts
+    {
+
+
+}

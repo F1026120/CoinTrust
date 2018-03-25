@@ -9,10 +9,10 @@ namespace CoinTrust.Models
 {
     public class RealCoinFund
     {
+        
         [Key]
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RealCoinFundId { get; set; }
+        public string AccountId { get; set; }
 
         [Required]
         public Account User { get; set; }

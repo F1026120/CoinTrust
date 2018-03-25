@@ -18,7 +18,7 @@ namespace CoinTrust.Models
         public string Password { get; set; }
 
         [NotMapped]
-        [Compare("Password", ErrorMessage = "密碼不一致")]
+        //[Compare("Password", ErrorMessage = "密碼不一致")]
         public string ConfirmPassword { get; set; }
 
         [Required]
@@ -27,7 +27,10 @@ namespace CoinTrust.Models
         public string Phone { get; set; }
         
         [Required]
-        public bool Certification { get; set; }
+        public bool Certified { get; set; }
+
+        [Required]
+        public string CertificationCode { get; set; }
 
         [Required]
         public bool UsePhoneAuthenticator { get; set; }

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
@@ -26,9 +26,32 @@
                     <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav right">
-                    <li>@Html.ActionLink("Sign In", "SignIn", "Account")</li>
-                    <li>@Html.ActionLink("Sign up", "SignUp", "Account")</li>
+                    <!--if (Response.Cookies.AllKeys.Contains("AccountId")) -->
+                    @if (Request.Cookies.AllKeys.Contains(FormsAuthentication.FormsCookieName))
+                    {
+                        <li>@Html.ActionLink("AccountInfo", "Info", "AccountInfo")</li>
+                        <li>@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
+                    }
+                    else
+                    {
+                        <li> @Html.ActionLink("Sign In", "SignIn", "Account") </li>
+                        <li> @Html.ActionLink("Sign up", "SignUp", "Account") </li>
+                    }
                 </ul>
+
+                @*@if (!string.IsNullOrWhiteSpace(WebSiteHelper.CurrentUserName))
+    {
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@WebSiteHelper.CurrentUserName <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="@Url.Action("Logout", "Home")"><i class="icon-off"></i> 登出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+}*@
             </div>
         </div>
     </div>

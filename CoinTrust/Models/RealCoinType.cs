@@ -9,11 +9,14 @@ namespace CoinTrust.Models
 {
     public class RealCoinType
     {
+        /*
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RealCoinTypeId { get; set; }
+        */
 
+        [Key]
         [Required]
         public string Name { get; set; }
     }

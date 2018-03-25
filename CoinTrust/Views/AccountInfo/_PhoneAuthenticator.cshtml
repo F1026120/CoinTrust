@@ -1,0 +1,39 @@
+﻿@model CoinTrust.ViewModels.AccountInfo
+
+@* umm 這邊你知道為什麼我要移過來嗎 下面這段 感覺就是一起的.. 摁,這是其中一點,
+    但有更重要的是  當他更新上面的labels 下面這些也要跟著更新. 我指的是if那段 雖然她現在沒有做事情*p4摁摁p
+    我不知道該如何在page載入之前去看javascript有沒有錯誤 @_@那有點難搞  尤其不太想真的寫js
+    然後這邊看剛剛的文章  看起來是要把label寫在外面@@
+
+*@
+@*routeValues: new { isUse = Model.User.UsePhoneAuthenticator },*@
+@*非同步傳遞表單的機制*@
+@using (Ajax.BeginForm(
+    actionName: "changePhoneAuth",
+    controllerName: "AccountInfo",
+    ajaxOptions: new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "UsePhoneAuthenticator" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- 這邊要新增js 設定trigger for checkbox -->
+    @*if (Model.User.UseGoogleAuthenticator)
+        {
+            <input name="isUse" type="checkbox" />
+        }
+        else
+        {
+            <input name="isUse" type="checkbox" checked/>
+        }*@
+    
+    <label id="UsePhoneAuthenticator">
+        <a>使用手機認證</a>
+        @if (Model.User.UsePhoneAuthenticator)
+        {
+            <input type="checkbox" data-toggle="toggle" checked />
+        }
+        else
+        {
+            <input type="checkbox" data-toggle="toggle" />
+        }
+    </label>
+    <input type="submit" value="更改設定" />
+}

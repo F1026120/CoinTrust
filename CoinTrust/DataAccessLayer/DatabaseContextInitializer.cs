@@ -21,9 +21,9 @@ namespace CoinTrust.DataAccessLayer
             //You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //to avoid creating duplicate seed data.
 
-            Account yy = new Account { Certification = false, Password = "123456", Phone = "0912345678", UseGoogleAuthenticator = true, UsePhoneAuthenticator = true, CreateAt = DateTime.Now, UpdateAt = DateTime.Now, ConfirmPassword = "123456", AccountId = "test@cointrust.com" };
+            Account yy = new Account { Certified = false, Password = "123456", Phone = "0912345678", UseGoogleAuthenticator = true, UsePhoneAuthenticator = true, CreateAt = DateTime.Now, UpdateAt = DateTime.Now, ConfirmPassword = "123456", AccountId = "test@cointrust.com" };
             context.Account.Add(yy);
-            Account pl = new Account { Certification = false, Password = "654321", Phone = "0987654321", UseGoogleAuthenticator = true, UsePhoneAuthenticator = true, CreateAt = DateTime.Now, UpdateAt = DateTime.Now, ConfirmPassword = "654321", AccountId = "test2@cointrust.com" };
+            Account pl = new Account { Certified = false, Password = "654321", Phone = "0987654321", UseGoogleAuthenticator = true, UsePhoneAuthenticator = true, CreateAt = DateTime.Now, UpdateAt = DateTime.Now, ConfirmPassword = "654321", AccountId = "test2@cointrust.com" };
             context.Account.Add(pl);
             context.SaveChanges();
 
@@ -39,7 +39,7 @@ namespace CoinTrust.DataAccessLayer
             context.LoginHistory.Add(first);
             context.SaveChanges();
 
-            Order or1 = new Order { Address = "9876543210", CreateAt = DateTime.Now, DigitCoinType = eth_type, MinQuantity = 1, OrderStatus = OrderStatus.New, Price = 900, Quantity = 5, RemainQuantity = 5, Seller = yy, UpdateAt = DateTime.Now};
+            Order or1 = new Order { Address = "9876543210", CreateAt = DateTime.Now, DigitCoinType = eth_type, MinQuantity = 1, OrderStatus = OrderStatus.New, Price = 900, Quantity = 5, RemainQuantity = 5, Seller = yy, UpdateAt = DateTime.Now };
             context.Order.Add(or1);
             context.SaveChanges();
 

@@ -36,12 +36,18 @@ namespace CoinTrust
                 url: "user/info/CamelCaseTransactionHistories/{action}/{id}",
                 defaults: new { controller = "TransactionHistories", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "CertifyEmail",
+                url: "Account/{action}/{id}/{code}",
+                defaults: new { controller = "Account", action = "CertifyEmail", id = UrlParameter.Optional, code = UrlParameter.Optional }//帳號認證
+            );
 
             routes.MapRoute(
                 name: "Account",
                 url: "Account/{action}",
-                defaults: new { controller = "Account", action = "Info" }
+                defaults: new { controller = "Account", action = "SignIn" }
             );
+
 
 
             routes.MapRoute(
