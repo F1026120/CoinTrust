@@ -9,33 +9,8 @@
 <h3>使用者電話： @Model.User.Phone</h3>
 
 @Html.Partial("_PhoneAuthenticator", Model)
-<h2>近五次登入</h2>
-<table class="table">
-    
-    @for (int i = 0; i < 5; i++)
-    {
-        <tr>
-            <td>@Model.LoginHistory[i].LoginAt</td>
-            <td>@Model.LoginHistory[i].Ip</td>
-            <td>@Model.LoginHistory[i].Locale</td>
-        </tr>
+@Html.Partial("_LogonHistory",Model)
 
-
-    }
-
-
-
-
-    @*@foreach (var logonHistory in Model.LoginHistory)
-        {
-            <tr>
-                <td>@logonHistory.LoginAt</td>
-                <td>@logonHistory.Ip</td>
-                <td>@logonHistory.Locale</td>
-            </tr>
-        }*@
-
-</table>
 
 @section scripts
     {

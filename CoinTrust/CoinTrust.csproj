@@ -420,6 +420,8 @@
     <Content Include="Views\AccountInfo\Info.cshtml" />
     <Content Include="Views\AccountInfo\_PhoneAuthenticator.cshtml" />
     <Content Include="Views\AccountInfo\BankAccountManger.cshtml" />
+    <Content Include="Views\AccountInfo\_LogonHistory.cshtml" />
+    <Content Include="Views\Orders\CreateOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

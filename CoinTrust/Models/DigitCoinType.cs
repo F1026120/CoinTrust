@@ -9,11 +9,11 @@ namespace CoinTrust.Models
 {
     public class DigitCoinType
     {
+        //[Key]
+        //[Required]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public int DigitCoinTypeId { get; set; }
         [Key]
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int DigitCoinTypeId { get; set; }
-
         [Required]
         public string Name { get; set; }
 
