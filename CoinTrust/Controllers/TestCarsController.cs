@@ -18,6 +18,7 @@ namespace CoinTrust.Controllers
         // GET: TestCars
         public ActionResult Index()
         {
+            var k = db.TestCarKey.Find(1);
             return View(db.TestCar.ToList());
         }
 

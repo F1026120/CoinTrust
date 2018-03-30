@@ -177,6 +177,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Database\201802151524595_init.cs" />
     <Compile Include="Migrations\Database\201802151524595_init.Designer.cs">
       <DependentUpon>201802151524595_init.cs</DependentUpon>
@@ -225,6 +226,10 @@
     <Compile Include="Migrations\TestCar\201802151119161_init.cs" />
     <Compile Include="Migrations\TestCar\201802151119161_init.Designer.cs">
       <DependentUpon>201802151119161_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\TestCar\201803301502239_CarKey_virtual.cs" />
+    <Compile Include="Migrations\TestCar\201803301502239_CarKey_virtual.Designer.cs">
+      <DependentUpon>201803301502239_CarKey_virtual.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\TestCar\Configuration.cs" />
     <Compile Include="Models\DigitCoinAccount.cs" />
@@ -411,17 +416,17 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
-    <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
-    <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Account\CertifyEmail.cshtml" />
     <Content Include="Views\AccountInfo\Info.cshtml" />
     <Content Include="Views\AccountInfo\_PhoneAuthenticator.cshtml" />
     <Content Include="Views\AccountInfo\BankAccountManger.cshtml" />
     <Content Include="Views\AccountInfo\_LogonHistory.cshtml" />
     <Content Include="Views\Orders\CreateOrder.cshtml" />
+    <Content Include="Views\Orders\List.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -470,6 +475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\TestCar\201802151119161_init.resx">
       <DependentUpon>201802151119161_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\TestCar\201803301502239_CarKey_virtual.resx">
+      <DependentUpon>201803301502239_CarKey_virtual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -66,24 +66,16 @@ namespace CoinTrust.Controllers
                 order.RemainQuantity = order.Quantity;
                 order.CreateAt = DateTime.Now;
                 order.UpdateAt = DateTime.Now;
+                Account seller = db.Account.Find(accountId);
+                order.Seller = seller;
                 DigitCoinType digitCoinType = db.DigitCoinType.Find("ETH");
-                order.Seller.AccountId = accountId;
                 order.DigitCoinType = digitCoinType;
                 order.OrderStatus = OrderStatus.New;
                 //order.Address todo regex
                 db.Order.Add(order);
                 try { db.SaveChanges(); }
-                catch (DbEntityValidationException dbEx)
+                catch
                 {
-                    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Trace.TraceInformation("Property: {0} Error: {1}",
-                                                    validationError.PropertyName,
-                                                    validationError.ErrorMessage);
-                        }
-                    }
                     return Content("DB faid");
                 }
                 //return RedirectToAction("Index");
@@ -94,39 +86,23 @@ namespace CoinTrust.Controllers
 
             //return View(order);
         }
-
-        // GET: Orders/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult List()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Order.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            var order = db.Order.Where(m => m.Seller.AccountId == accountId && 
+                                            (m.OrderStatus == OrderStatus.New ||
+                                            m.OrderStatus == OrderStatus.PartialFilled ||
+                                            m.OrderStatus == OrderStatus.Filled
+                                            )).ToList();
+
+
             return View(order);
+
         }
 
-        // POST: Orders/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,Price,Quantity,RemainQuantity,MinQuantity,Address,OrderStatus,CreateAt,UpdateAt")] Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(order);
-        }
 
         // GET: Orders/Delete/5
+        [HttpGet]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -134,31 +110,21 @@ namespace CoinTrust.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order order = db.Order.Find(id);
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+
             if (order == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
-        }
-
-        // POST: Orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Order order = db.Order.Find(id);
-            db.Order.Remove(order);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
+            else if (order.Seller.AccountId == accountId) //BUG 需處理 Seller 回傳NULL
             {
-                db.Dispose();
+                order.OrderStatus = OrderStatus.Canceled;
+                db.SaveChanges();
             }
-            base.Dispose(disposing);
+
+            else { return Content("刪除失敗 :使用者ID錯誤"); }
+            return RedirectToAction("List");
         }
+
     }
 }

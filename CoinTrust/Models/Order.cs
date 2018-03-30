@@ -22,10 +22,10 @@ namespace CoinTrust.Models
         /// Order賣家
         /// </summary>
         [Required]
-        public Account Seller { get; set; }
+        public virtual Account Seller { get; set; }
 
         [Required]
-        public DigitCoinType DigitCoinType { get; set; }
+        public virtual DigitCoinType DigitCoinType { get; set; }
 
         /// <summary>
         /// 數位貨幣單價

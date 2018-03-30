@@ -2,10 +2,11 @@
 
 <h2>近五次登入</h2>
 <table class="table">
-
-    @for (int i = 0; i < 5; i++)
+    @if (Model.LoginHistory.Count >= 5)
     {
-        if (Model.LoginHistory[i] == null) { break; }
+        for (int i = Model.LoginHistory.Count - 1; i >= Model.LoginHistory.Count - 5; i--)
+        {
+            if (Model.LoginHistory[i] == null) { break; }
         <tr>
             <td>@Model.LoginHistory[i].LoginAt</td>
             <td>@Model.LoginHistory[i].Ip</td>
@@ -13,18 +14,7 @@
         </tr>
 
 
+        }
     }
-
-
-
-
-    @*@foreach (var logonHistory in Model.LoginHistory)
-        {
-            <tr>
-                <td>@logonHistory.LoginAt</td>
-                <td>@logonHistory.Ip</td>
-                <td>@logonHistory.Locale</td>
-            </tr>
-        }*@
 
 </table>

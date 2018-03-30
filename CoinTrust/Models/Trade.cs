@@ -19,10 +19,10 @@ namespace CoinTrust.Models
 
         // 這邊也許與Order的Seller有潛在的問題
         [Required]
-        public Account Buyer { get; set; }
+        public virtual Account Buyer { get; set; }
         
         [Required]
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
 
         [Required]
         public double Quantity { get; set; }

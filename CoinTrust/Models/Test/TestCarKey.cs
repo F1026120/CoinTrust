@@ -15,6 +15,6 @@ namespace CoinTrust.Models
         
         public string Type { get; set; }
 
-        public TestCar TestCar { get; set; }
+        public virtual TestCar TestCar { get; set; }
     }
 }

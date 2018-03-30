@@ -22,13 +22,13 @@ namespace CoinTrust.Models
         /// the primary key of User table
         /// </summary>
         [Required]
-        public Account User { get; set; }
+        public virtual Account User { get; set; }
         
         /// <summary>
         /// 真實貨幣幣種
         /// </summary>
         [Required]
-        public RealCoinType RealCoinType { get; set; }
+        public virtual RealCoinType RealCoinType { get; set; }
         
         /// <summary>
         /// 轉帳金額

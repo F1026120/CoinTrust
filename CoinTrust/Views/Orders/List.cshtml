@@ -1,0 +1,57 @@
+﻿
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            OrderID
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            RemainQuantity
+        </th>
+        <th>
+            OrderStatus
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.OrderId
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @item.RemainQuantity
+            </td>
+
+            @if (item.OrderStatus == CoinTrust.Models.OrderStatus.New)
+            {
+                <td>存在</td>
+            }
+            else if (item.OrderStatus == CoinTrust.Models.OrderStatus.Canceled)
+            {
+                <td>已取消</td>
+            }
+            <td>
+                @Html.ActionLink("刪除", "Delete", new { id = item.OrderId })
+            </td>
+        </tr>
+    }
+</table>

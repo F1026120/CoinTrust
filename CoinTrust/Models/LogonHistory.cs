@@ -15,7 +15,7 @@ namespace CoinTrust.Models
         public int LoginHistoryId { get; set; }
 
         [Required]
-        public Account User { get; set; }
+        public virtual Account User { get; set; }
 
         [Required]
         public string Ip { get; set; }

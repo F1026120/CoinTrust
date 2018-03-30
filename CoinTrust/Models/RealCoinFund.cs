@@ -14,11 +14,12 @@ namespace CoinTrust.Models
         [Required]
         public string AccountId { get; set; }
 
-        [Required]
-        public Account User { get; set; }
 
         [Required]
-        public RealCoinType RealCoinType { get; set; }
+        public virtual Account User { get; set; }
+
+        [Required]
+        public virtual RealCoinType RealCoinType { get; set; }
 
         [Required]
         public CoinStatus CoinStatus { get; set; }

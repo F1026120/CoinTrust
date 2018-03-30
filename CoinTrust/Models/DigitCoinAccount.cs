@@ -19,9 +19,9 @@ namespace CoinTrust.Models
         public string Address { get; set; }
 
         [Required]
-        public Account User { get; set; }
+        public virtual Account User { get; set; }
 
         [Required]
-        public DigitCoinType DigitCoinType { get; set; }
+        public virtual DigitCoinType DigitCoinType { get; set; }
     }
 }

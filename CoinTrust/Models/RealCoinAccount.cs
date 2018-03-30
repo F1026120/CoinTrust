@@ -25,9 +25,9 @@ namespace CoinTrust.Models
         public string Address { get; set; }
 
         [Required]
-        public Account User { get; set; }
+        public virtual Account User { get; set; }
 
         [Required]
-        public RealCoinType RealCoinType { get; set; }
+        public virtual RealCoinType RealCoinType { get; set; }
     }
 }
