@@ -72,7 +72,9 @@ namespace CoinTrust.Controllers
                 try
                 {
                     db.SaveChanges();
-                    SendToEmailWithSubjectAndMsg(account.AccountId, "註冊認證信", msg);
+                    Helper.EmailHelper emailHelper = new Helper.EmailHelper();
+                    emailHelper.SendToEmailWithSubjectAndMsg(account.AccountId, "註冊認證信", msg);
+                    //SendToEmailWithSubjectAndMsg(account.AccountId, "註冊認證信", msg);
                 }
                 catch (DbEntityValidationException dbEx)
                 {
@@ -251,6 +253,7 @@ namespace CoinTrust.Controllers
             return Content("認證碼錯誤");
         }
 
+        /*
         private void SendToEmailWithSubjectAndMsg(string to, string subject, string htmlMessage)
         {
             MailMessage msg = new MailMessage();
@@ -274,6 +277,7 @@ namespace CoinTrust.Controllers
             MySmtp.EnableSsl = true;
             MySmtp.Send(msg);
         }
+        */
 
         //Ernest, Cryptography是密碼學的意思, 應該使用Encrypt(加密)
         //protected string CryptographyPassword(string password, string salt)
