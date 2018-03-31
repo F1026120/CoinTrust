@@ -19,39 +19,38 @@
                 </button>
                 @Html.ActionLink("CoinTrust", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse col">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("首頁", "Index", "Home")</li>
                     <li>@Html.ActionLink("關於我們", "About", "Home")</li>
                     <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
                 </ul>
-                <ul class="nav navbar-nav right">
-                    <!--if (Response.Cookies.AllKeys.Contains("AccountId")) -->
+                <ul class="nav navbar-nav">
                     @if (Request.Cookies.AllKeys.Contains(FormsAuthentication.FormsCookieName))
                     {
                         <li>@Html.ActionLink("AccountInfo", "Info", "AccountInfo")</li>
-                        <li>@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
+                        <li class="dropdown">
+
+                            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Order
+                                <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="btn dropdown-item" href="/Orders/List">List Order</a>
+                                <a class="btn dropdown-item" href="/Orders/CreateOrder">Create Order</a>
+                            </div>
+
+                        </li>
+
                     }
                     else
                     {
                         <li> @Html.ActionLink("Sign In", "SignIn", "Account") </li>
                         <li> @Html.ActionLink("Sign up", "SignUp", "Account") </li>
                     }
-                </ul>
+                    <li class="right">@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
 
-                @*@if (!string.IsNullOrWhiteSpace(WebSiteHelper.CurrentUserName))
-    {
-            <ul class="nav pull-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@WebSiteHelper.CurrentUserName <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="@Url.Action("Logout", "Home")"><i class="icon-off"></i> 登出</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-}*@
+                </ul>
             </div>
         </div>
     </div>
@@ -59,7 +58,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+            <p>&copy; @DateTime.Now.Year - CoinTrust 數位貨幣交易媒合平台</p>
         </footer>
     </div>
 

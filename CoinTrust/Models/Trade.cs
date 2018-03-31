@@ -32,5 +32,11 @@ namespace CoinTrust.Models
 
         [Required]
         public DateTime CreateAt { get; set; }
+
+        /// <summary>
+        /// 買家的錢包地址
+        /// </summary>
+        [Required]
+        public string BuyerAddress { get; set; }
     }
 }

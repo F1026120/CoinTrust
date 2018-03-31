@@ -14,8 +14,17 @@ namespace CoinTrust.Models
 
     public enum TradeStatus
     {
-        Filled,
-        Rejected,
+        /// <summary>
+        /// 交易完成
+        /// </summary>
+        finished,
+        /// <summary>
+        /// 交易中
+        /// </summary>
+        Trading,
+        /// <summary>
+        /// 交易取消
+        /// </summary>
         Canceled
     }
     

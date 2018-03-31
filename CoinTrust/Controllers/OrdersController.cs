@@ -91,8 +91,7 @@ namespace CoinTrust.Controllers
             var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
             var order = db.Order.Where(m => m.Seller.AccountId == accountId && 
                                             (m.OrderStatus == OrderStatus.New ||
-                                            m.OrderStatus == OrderStatus.PartialFilled ||
-                                            m.OrderStatus == OrderStatus.Filled
+                                            m.OrderStatus == OrderStatus.PartialFilled 
                                             )).ToList();
 
 
@@ -116,7 +115,7 @@ namespace CoinTrust.Controllers
             {
                 return HttpNotFound();
             }
-            else if (order.Seller.AccountId == accountId) //BUG 需處理 Seller 回傳NULL
+            else if (order.Seller.AccountId == accountId) 
             {
                 order.OrderStatus = OrderStatus.Canceled;
                 db.SaveChanges();
