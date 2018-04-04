@@ -395,6 +395,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="img\logo-background.png" />
     <Content Include="img\logo-jpg500px.jpg" />
     <Content Include="img\logo-png500px.png" />
     <Content Include="img\logo300-png300px.png" />
