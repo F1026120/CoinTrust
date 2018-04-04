@@ -9,29 +9,31 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>*@
                 @Html.ActionLink("CoinTrust", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse col">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                    <li>@Html.ActionLink("關於我們", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home")</li>
+            <div class=" navbar-collapse collapse col">
+                <ul class="nav navbar-nav nav-item">
+                    <li>@Html.ActionLink("首頁", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("關於我們", "About", "Home", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("連絡人", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 </ul>
                 <ul class="nav navbar-nav">
                     @if (Request.Cookies.AllKeys.Contains(FormsAuthentication.FormsCookieName))
                     {
-                        <li>@Html.ActionLink("AccountInfo", "Info", "AccountInfo")</li>
+                        <li>@Html.ActionLink("AccountInfo", "Info", "AccountInfo", null, new { @class = "nav-link" })</li>
                         <li class="dropdown">
 
-                            <a class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn dropdown-toggle nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Order
                                 <span class="caret"></span>
                             </a>
@@ -41,14 +43,14 @@
                             </div>
 
                         </li>
-
+                        <li class="right">@Html.ActionLink("Sign Out", "SignOut", "Account", null, new { @class = "nav-link" })</li>
                     }
                     else
                     {
-                        <li> @Html.ActionLink("Sign In", "SignIn", "Account") </li>
-                        <li> @Html.ActionLink("Sign up", "SignUp", "Account") </li>
+                        <li> @Html.ActionLink("Sign In", "SignIn", "Account", null, new { @class = "nav-link" }) </li>
+                        <li> @Html.ActionLink("Sign up", "SignUp", "Account", null, new { @class = "nav-link" }) </li>
                     }
-                    <li class="right">@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
+
 
                 </ul>
             </div>

@@ -55,7 +55,7 @@ namespace CoinTrust.DataAccessLayer
             context.RealCoinAccount.Add(pla);
             context.SaveChanges();
 
-            Trade t1 = new Trade { Buyer = pl, Order = or1, CreateAt = DateTime.Now, Quantity = 1, TradeStatus = TradeStatus.Filled };
+            Trade t1 = new Trade { Buyer = pl, Order = or1, CreateAt = DateTime.Now, Quantity = 1, TradeStatus = TradeStatus.finished };
             or1.RemainQuantity -= 1;
             or1.OrderStatus = OrderStatus.PartialFilled;
             context.Trade.Add(t1);

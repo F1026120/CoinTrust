@@ -139,7 +139,7 @@ namespace CoinTrust.Controllers
                 //Session.RemoveAll();
                 //this.CreateCookies(account, true); // 測試用 暫時為TRUE :isRemeber
                 this.CreateCookies(account, true);
-
+                account.UpdateAt = DateTime.Now;
                 LoginHistory loginHistory = new LoginHistory();
                 loginHistory.LoginAt = DateTime.Now;
                 loginHistory.User = account;

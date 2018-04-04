@@ -14,6 +14,7 @@ namespace CoinTrust.Models
         /// 每筆訂單代碼
         /// </summary>
         [Key]
+        [DisplayName("訂單ID")]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
@@ -45,6 +46,7 @@ namespace CoinTrust.Models
         /// 數位貨幣剩餘數量
         /// </summary>
         [Required]
+        [DisplayName("剩餘數量")]
         public double RemainQuantity { get; set; }
 
         /// <summary>
@@ -62,12 +64,15 @@ namespace CoinTrust.Models
         public string Address { get; set; }// todo add regex to here
 
         [Required]
+        [DisplayName("訂單狀態")]
         public OrderStatus OrderStatus { get; set; }
         
         [Required]
+        [DisplayName("訂單建立時間")]
         public DateTime CreateAt { get; set; }
 
         [Required]
+        [DisplayName("最後更新時間")]
         public DateTime UpdateAt { get; set; }
     }
 }
