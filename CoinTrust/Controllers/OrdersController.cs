@@ -71,15 +71,17 @@ namespace CoinTrust.Controllers
                 DigitCoinType digitCoinType = db.DigitCoinType.Find("ETH");
                 order.DigitCoinType = digitCoinType;
                 order.OrderStatus = OrderStatus.New;
-                //order.Address todo regex
+                Helper.ETHAddressHelper EAH = new Helper.ETHAddressHelper();
+                if (!(EAH.IsValid(order.Address))) { return Content("Address 格式錯誤 訂單建立失敗 請再確認" + order.Address); }
+                if (EAH.GetBalance(order.Address) < order.Quantity) { return Content("Address ETH餘額不足 訂單建立失敗"); }
                 db.Order.Add(order);
                 try { db.SaveChanges(); }
                 catch
                 {
                     return Content("DB faid");
                 }
-                //return RedirectToAction("Index");
-                return Content("訂單建立成功");
+                return RedirectToAction("List");
+                //return Content("訂單建立成功");
             }
             //else return Content("訂單建立失敗");
 
@@ -89,9 +91,9 @@ namespace CoinTrust.Controllers
         public ActionResult List()
         {
             var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
-            var order = db.Order.Where(m => m.Seller.AccountId == accountId && 
+            var order = db.Order.Where(m => m.Seller.AccountId == accountId &&
                                             (m.OrderStatus == OrderStatus.New ||
-                                            m.OrderStatus == OrderStatus.PartialFilled 
+                                            m.OrderStatus == OrderStatus.PartialFilled
                                             )).ToList();
 
 
@@ -115,7 +117,7 @@ namespace CoinTrust.Controllers
             {
                 return HttpNotFound();
             }
-            else if (order.Seller.AccountId == accountId) 
+            else if (order.Seller.AccountId == accountId)
             {
                 order.OrderStatus = OrderStatus.Canceled;
                 db.SaveChanges();
