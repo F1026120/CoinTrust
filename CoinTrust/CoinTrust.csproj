@@ -368,6 +368,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\signin.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -399,9 +400,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="img\logo-background.png" />
-    <Content Include="img\logo-jpg500px.jpg" />
-    <Content Include="img\logo-png500px.png" />
-    <Content Include="img\logo300-png300px.png" />
+    <Content Include="img\logo300px.png" />
     <Content Include="img\交易流程.jpg" />
     <Content Include="img\第三方詐騙手法.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
