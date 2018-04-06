@@ -58,7 +58,7 @@ namespace CoinTrust.Controllers
         public ActionResult CreateOrder([Bind(Include = "Price,Quantity,MinQuantity,Address")] Order order)
         {
 
-            //if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
                 try { order.Seller = db.Account.Find(accountId); } catch { return Content("DB accountid not found"); }
@@ -83,7 +83,7 @@ namespace CoinTrust.Controllers
                 return RedirectToAction("List");
                 //return Content("訂單建立成功");
             }
-            //else return Content("訂單建立失敗");
+            else return Content("訂單建立失敗");
 
 
             //return View(order);

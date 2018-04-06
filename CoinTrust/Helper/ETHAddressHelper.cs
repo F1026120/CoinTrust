@@ -19,6 +19,7 @@ namespace CoinTrust.Helper
         public bool IsValid(string address)
         {
             string pattern = "0x[0-9a-fA-F]{40}$";
+            address.Trim();
             Regex reg = new Regex(pattern, RegexOptions.IgnoreCase);
             bool result = reg.IsMatch(address);
             return result;
@@ -27,7 +28,7 @@ namespace CoinTrust.Helper
         {
             //https://api.etherscan.io/api?module=account&action=balance&address=0xA842B788a13aeD9748671F9992Af07876e594E3a&tag=latest&apikey=GRVMICHRSJGMGZMBBUYQ6R1H7I7TS2ICT9
             //https://api.etherscan.io/api?module=account&action=balance&address=0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a&tag=latest&apikey=YourApiKeyToken
-
+            address.Trim();
             // Create a request for the URL. 		
             WebRequest request = WebRequest.Create("https://api.etherscan.io/api?module=account&action=balance&address="+
                                                    address+ "&tag=latest&apikey="+APIKey );

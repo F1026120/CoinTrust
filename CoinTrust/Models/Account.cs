@@ -31,10 +31,10 @@ namespace CoinTrust.Models
         [DisplayName("手機號碼")]
         public string Phone { get; set; }
 
-        [Required]
+
         public bool Certified { get; set; }
 
-        [Required]
+
         public string CertificationCode { get; set; }
 
         [Required]

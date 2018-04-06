@@ -90,7 +90,7 @@ namespace CoinTrust.Controllers
                 }
                 //return RedirectToAction("Account", "SignIn");
             }
-            return View();
+            return RedirectToAction("SignIn", "Account");
         }
 
         [AllowAnonymous]
