@@ -23,15 +23,7 @@ namespace CoinTrust.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            Debug.WriteLine("2131231231233212319");
 
-            Debug.WriteLine(HttpContext.Request.Cookies.Count);
-            foreach (var k in HttpContext.Request.Cookies.Keys)
-            {
-                Debug.WriteLine(k);
-            }
-            HttpContext.Request.Cookies.Clear();
-            Debug.WriteLine(HttpContext.Request.Cookies.Count);
 
             return View();
         }
