@@ -14,48 +14,52 @@
             background-attachment: fixed;
             background-position: center;
             background-size: 500px;">
-    <div class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="container">
             <div class="navbar-header">
-                @*<button type="button" class="navbar-toggle justify-content-end" data-toggle="collapse" data-target="#navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>*@
+
                 @Html.ActionLink("CoinTrust", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class=" navbar-collapse collapse col">
+            <div class=" navbar-collapse collapse col" id="navbarSupportedContent">
+                <ul class="nav navbar-nav nav-item "></ul>
+
                 <ul class="nav navbar-nav nav-item">
-                    <li>@Html.ActionLink("首頁", "Index", "Home", null, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("關於我們", "About", "Home", null, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("連絡人", "Contact", "Home", null, new { @class = "nav-link" })</li>
-                </ul>
-                <ul class="nav navbar-nav">
                     @if (Request.Cookies.AllKeys.Contains(FormsAuthentication.FormsCookieName))
                     {
-                        <li>@Html.ActionLink("AccountInfo", "Info", "AccountInfo", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("目前市場訂單", "Market", "Home", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("帳號資訊", "Info", "AccountInfo", null, new { @class = "nav-link" })</li>
                         <li class="dropdown">
 
                             <a class="btn dropdown-toggle nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Order
+                                訂單管理
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="btn dropdown-item" href="/Orders/List">List Order</a>
-                                <a class="btn dropdown-item" href="/Orders/CreateOrder">Create Order</a>
+                                <a class="btn dropdown-item" href="/Orders/CreateOrder">建立訂單</a>
+                                <a class="btn dropdown-item" href="/Orders/List">我的訂單</a>
                             </div>
 
                         </li>
+                    }
+
+
+                </ul>
+                <div class="mr-auto"></div>
+
+                <ul class="nav navbar-nav nav-item">
+                    @if (Request.Cookies.AllKeys.Contains(FormsAuthentication.FormsCookieName))
+                    {
+
                         <li class="right">@Html.ActionLink("Sign Out", "SignOut", "Account", null, new { @class = "nav-link" })</li>
                     }
                     else
                     {
-                        <li> @Html.ActionLink("Sign In", "SignIn", "Account", null, new { @class = "nav-link" }) </li>
+                        <li>@Html.ActionLink("Sign In", "SignIn", "Account", null, new { @class = "nav-link" })</li>
                         <li> @Html.ActionLink("Sign up", "SignUp", "Account", null, new { @class = "nav-link" }) </li>
                     }
-
 
                 </ul>
             </div>
@@ -65,6 +69,10 @@
         @RenderBody()
         <hr />
         <footer>
+            <div class="row">
+                @Html.ActionLink("關於我們", "About", "Home", null, new { @class = "nav-link" })
+                @Html.ActionLink("聯絡我們", "Contact", "Home", null, new { @class = "nav-link" })
+            </div>
             <p>&copy; @DateTime.Now.Year - CoinTrust 數位貨幣交易媒合平台</p>
         </footer>
     </div>
