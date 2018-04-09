@@ -404,6 +404,7 @@
     <Content Include="img\sign-in.svg" />
     <Content Include="img\sign-out.svg" />
     <Content Include="img\交易流程.jpg" />
+    <Content Include="img\空白頭像.jpg" />
     <Content Include="img\第三方詐騙手法.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

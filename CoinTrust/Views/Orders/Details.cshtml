@@ -8,78 +8,91 @@
 
 <div class="container">
     <hr />
-    <dl class="dl-horizontal col-sm-4">
+    <div class="row">
+        <div class="col-md-4 col">
+            <div class="row-md-4">
+                <img src="~/img/空白頭像.jpg" />
+                <hr />
+            </div>
+            <div class="row-md-6">
+                <dl class="dl-horizontal">
+                    <dt>賣家ID</dt>
+                    <dd>@Html.DisplayFor(model => model.Seller.AccountId)</dd>
+                    <dt>上次登入時間</dt>
+                    <dd>@Html.DisplayFor(model => model.Seller.UpdateAt)</dd>
+                </dl>
+            </div>
+            <div class="row-md-2">
+                <button class="btn btn-success">點選下單</button>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <dl class="dl-horizontal ">
+                <dt>@Html.DisplayNameFor(model => model.Price)</dt>
 
-        <dt>賣家ID</dt>
-        <dd>@Html.DisplayFor(model => model.Seller.AccountId)</dd>
+                <dd>@Html.DisplayFor(model => model.Price)</dd>
 
-        <dt>上次登入時間</dt>
-        <dd>@Html.DisplayFor(model => model.Seller.UpdateAt)</dd>
-    </dl>
-    <dl class="dl-horizontal col-sm-8">
-        <dt>@Html.DisplayNameFor(model => model.Price)</dt>
+                <dt>@Html.DisplayNameFor(model => model.Quantity)</dt>
 
-        <dd>@Html.DisplayFor(model => model.Price)</dd>
+                <dd>@Html.DisplayFor(model => model.Quantity)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.Quantity)</dt>
+                <dt>@Html.DisplayNameFor(model => model.RemainQuantity)</dt>
 
-        <dd>@Html.DisplayFor(model => model.Quantity)</dd>
+                <dd>@Html.DisplayFor(model => model.RemainQuantity)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.RemainQuantity)</dt>
+                <dt>@Html.DisplayNameFor(model => model.MinQuantity)</dt>
 
-        <dd>@Html.DisplayFor(model => model.RemainQuantity)</dd>
+                <dd>@Html.DisplayFor(model => model.MinQuantity)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.MinQuantity)</dt>
+                <dt>@Html.DisplayNameFor(model => model.Address)</dt>
 
-        <dd>@Html.DisplayFor(model => model.MinQuantity)</dd>
+                <dd>@Html.DisplayFor(model => model.Address)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.Address)</dt>
+                <dt>@Html.DisplayNameFor(model => model.OrderStatus)</dt>
 
-        <dd>@Html.DisplayFor(model => model.Address)</dd>
+                <dd>@Html.DisplayFor(model => model.OrderStatus)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.OrderStatus)</dt>
+                <dt>@Html.DisplayNameFor(model => model.CreateAt)</dt>
 
-        <dd>@Html.DisplayFor(model => model.OrderStatus)</dd>
+                <dd>@Html.DisplayFor(model => model.CreateAt)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.CreateAt)</dt>
+                <dt>@Html.DisplayNameFor(model => model.UpdateAt)</dt>
 
-        <dd>@Html.DisplayFor(model => model.CreateAt)</dd>
+                <dd>@Html.DisplayFor(model => model.UpdateAt)</dd>
 
-        <dt>@Html.DisplayNameFor(model => model.UpdateAt)</dt>
-
-        <dd>@Html.DisplayFor(model => model.UpdateAt)</dd>
-
-    </dl>
+            </dl>
+        </div>
+    </div>
 </div>
 @*
-<table class="table">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.OrderId)</th>
-        <th>@Html.DisplayNameFor(model => model.Price)</th>
-        <th>@Html.DisplayNameFor(model => model.Quantity)</th>
-        <th>@Html.DisplayNameFor(model => model.RemainQuantity)</th>
-        <th>@Html.DisplayNameFor(model => model.MinQuantity)</th>
-        <th>@Html.DisplayNameFor(model => model.Address)</th>
-        <th>@Html.DisplayNameFor(model => model.OrderStatus)</th>
-        <th>@Html.DisplayNameFor(model => model.CreateAt)</th>
-        <th>@Html.DisplayNameFor(model => model.UpdateAt)</th>
-    </tr>
-    <tr>
-        <td>@Html.DisplayFor(model => model.OrderId)</td>
-        <td>@Html.DisplayFor(model => model.Price)</td>
-        <td>@Html.DisplayFor(model => model.Quantity)</td>
-        <td>@Html.DisplayFor(model => model.RemainQuantity)</td>
-        <td>@Html.DisplayFor(model => model.MinQuantity)</td>
-        <td>@Html.DisplayFor(model => model.Address)</td>
-        <td>@Html.DisplayFor(model => model.OrderStatus)</td>
-        <td>@Html.DisplayFor(model => model.CreateAt)</td>
-        <td>@Html.DisplayFor(model => model.UpdateAt)</td>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.OrderId)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+            <th>@Html.DisplayNameFor(model => model.RemainQuantity)</th>
+            <th>@Html.DisplayNameFor(model => model.MinQuantity)</th>
+            <th>@Html.DisplayNameFor(model => model.Address)</th>
+            <th>@Html.DisplayNameFor(model => model.OrderStatus)</th>
+            <th>@Html.DisplayNameFor(model => model.CreateAt)</th>
+            <th>@Html.DisplayNameFor(model => model.UpdateAt)</th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model => model.OrderId)</td>
+            <td>@Html.DisplayFor(model => model.Price)</td>
+            <td>@Html.DisplayFor(model => model.Quantity)</td>
+            <td>@Html.DisplayFor(model => model.RemainQuantity)</td>
+            <td>@Html.DisplayFor(model => model.MinQuantity)</td>
+            <td>@Html.DisplayFor(model => model.Address)</td>
+            <td>@Html.DisplayFor(model => model.OrderStatus)</td>
+            <td>@Html.DisplayFor(model => model.CreateAt)</td>
+            <td>@Html.DisplayFor(model => model.UpdateAt)</td>
+        </tr>
 
 
 
-</table>
-    *@
+    </table>
+*@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
     @Html.ActionLink("Back to List", "Index")

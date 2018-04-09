@@ -105,28 +105,10 @@ namespace CoinTrust.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SignIn(SignIn sign_in)
         {
-            //var systemuser = db.Account.FirstOrDefault(x => x.accout == SignIn.email);
-            //var account = db.Account //Ernest, 已重新命名,systemuser很像administrator
-            //    //.Include(x => x.SystemRoles)
-            //    .FirstOrDefault(x => x.AccountId == sign_in.email);
-
-            //Ernest, 這邊建議省掉重複的程式碼
-            //if (account == null)
-            //{
-            //    ModelState.AddModelError("", "請輸入正確的帳號或密碼!");
-            //    return View();
-            //}
-
-            //Ernest, 使用salt, 是提升字串的安全性, salt必須為不變的
-            //var PasswordSalt = db.Account.Find(SignIn.email).Password;
-            //var password = CryptographyPassword(SignIn.password, PasswordSalt);
+            
             bool fail = !ModelState.IsValid;
             var context = new DatabaseContext();
-            //var account = db.Account.FirstOrDefault(x => x.AccountId == sign_in.email);.
-            //var account = context.Account.Where(x => x.AccountId == sign_in.email).FirstOrDefault();
             var account = db.Account.Find(sign_in.AccountId);
-
-
             if (account == null ||
                 VerifyHash(account.Password, sign_in.password))
             {
@@ -136,8 +118,7 @@ namespace CoinTrust.Controllers
 
             if (!fail)
             {
-                //Session.RemoveAll();
-                //this.CreateCookies(account, true); // 測試用 暫時為TRUE :isRemeber
+
                 this.CreateCookies(account, true);
                 account.UpdateAt = DateTime.Now;
                 LoginHistory loginHistory = new LoginHistory();
