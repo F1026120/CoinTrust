@@ -12,11 +12,10 @@ namespace CoinTrust.Models
 
         [Key]
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int FundId { get; set; }
+        public string AccountId { get; set; }
 
-        [Required]
-        public virtual Account User { get; set; }
+        //[Required]
+        //public virtual Account User { get; set; }
 
         public virtual RealCoinType RealCoinType { get; set; }
 

@@ -13,23 +13,7 @@ namespace CoinTrust
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            /*
-            home page
-            account 
-            deposit/withdraw
-            trade history
-            logon history
-            
 
-
-            About us
-            Login/Logout
-            Order Creat/Delete
-            Show order of market
-            
-
-            
-            */
 
             routes.MapRoute(
                 name: "TransactionHistories",
@@ -46,6 +30,18 @@ namespace CoinTrust
                 name: "Account",
                 url: "Account/{action}",
                 defaults: new { controller = "Account", action = "SignIn" }
+            );
+
+            routes.MapRoute(
+                name: "Buy",
+                url: "Trades/Buy/{OrderId}",
+                defaults: new { controller = "Trades", action = "Buy" }
+            );
+
+            routes.MapRoute(
+                name: "Trading",
+                url: "Trades/Trading/{TradeId}",
+                defaults: new { controller = "Trades", action = "trading" }
             );
 
 

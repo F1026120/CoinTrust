@@ -2,14 +2,29 @@
 @{
     ViewBag.Title = "Info";
 }
-
+<br />
 <h2>使用者資料</h2>
-
-<h3>使用者帳號： @Model.User.AccountId</h3>
-<h3>使用者電話： @Model.User.Phone</h3>
-
-@Html.Partial("_PhoneAuthenticator", Model)
-@Html.Partial("_LogonHistory",Model)
+<div class="row">
+    <div class="col-sm-3">
+        <img src="~/img/空白頭像.jpg" />
+    </div>
+    <div class="col-sm-9">
+        <h3>使用者帳號： @Model.User.AccountId</h3>
+        <h3>使用者電話： @Model.User.Phone</h3>
+        @if (Model.RealCoinFund == null)
+        {
+            <h3>目前的餘額： 此帳號尚未認證 尚未設定餘額</h3>
+            <a href="/Home/Index">請點此重新發送驗證信</a>
+        }
+        else
+        {
+            <h3>目前的餘額： @Model.RealCoinFund.Amount NTD</h3>
+        }
+        @Html.Partial("_PhoneAuthenticator", Model)
+    </div>
+</div>
+<hr />
+@Html.Partial("_LogonHistory", Model)
 
 
 @section scripts

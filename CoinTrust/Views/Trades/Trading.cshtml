@@ -1,0 +1,64 @@
+﻿@model CoinTrust.Models.Trade
+
+@{
+    ViewBag.Title = "Trading";
+
+}
+
+<h2>訂單詳細資料</h2>
+
+<div class="container">
+    <hr />
+    <div class="row">
+        <div class="col-md-4 col">
+            <div class="row-md-4">
+                <img src="~/img/空白頭像.jpg" />
+                <hr />
+            </div>
+            <div class="row-md-6">
+                <dl class="dl-horizontal">
+                    <dt>買家ID</dt>
+                    <dd>@Html.DisplayFor(model => model.Buyer.AccountId)</dd>
+                    <dt>上次登入時間</dt>
+                    <dd>@Html.DisplayFor(model => model.Buyer.UpdateAt)</dd>
+                </dl>
+            </div>
+            <div class="row-md-2">
+                @Html.ActionLink("點選下單", "Buy", "Trades", new { id = Model.Order.OrderId }, new { @class = "btn btn-success" })
+                <a class="btn btn-danger text-light">聯絡買家</a>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table table-bordered table-light">
+                <tr>
+                    <td colspan="2">@Html.DisplayNameFor(model => model.Order.Price)</td>
+                    <td colspan="2">@Html.DisplayFor(model => model.Order.Price) NTD</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Quantity)</td>
+                    <td>@Html.DisplayFor(model => model.Quantity)</td>
+                    <td>總金額</td>
+                    <td>1600 NTD</td>
+                </tr>
+                <tr>
+                    <td>買家錢包地址</td>
+                    <td colspan="3">@Html.DisplayFor(model => model.BuyerAddress)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.CreateAt)</td>
+                    <td colspan="3">@Html.DisplayFor(model => model.CreateAt)</td>
+                </tr>
+            </table>
+            <br />
+            <div class="bg-light">
+                <div class="row">
+                    <div class="col h4">購買數量：0.1 ETH</div>
+
+                    <div class="col-md-4 h4">總金額：1500 NTD</div>
+                </div>
+                <p class="text-danger h4 "><strong>請在24小時內將貨幣轉至  後到此網頁點選</strong><button class="btn btn-success">已發送</button></p>
+                <span class="border border-primary h4">@Model.BuyerAddress</span> <span><button class="btn btn-info">點選複製</button></span>
+            </div>
+        </div>
+    </div>
+</div>

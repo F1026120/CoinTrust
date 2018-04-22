@@ -1,17 +1,22 @@
 ﻿@model CoinTrust.ViewModels.AccountInfo
 
 <h2>近五次登入</h2>
-<table class="table">
+<table class="table h6 table-bordered table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>登入時間</th>
+            <th>IP位置</th>
+        </tr>
+    </thead>
     @if (Model.LoginHistory.Count >= 5)
     {
         for (int i = Model.LoginHistory.Count - 1; i >= Model.LoginHistory.Count - 5; i--)
         {
             if (Model.LoginHistory[i] == null) { break; }
-        <tr>
-            <td>@Model.LoginHistory[i].LoginAt</td>
-            <td>@Model.LoginHistory[i].Ip</td>
-            <td>@Model.LoginHistory[i].Locale</td>
-        </tr>
+            <tr>
+                <td>@Model.LoginHistory[i].LoginAt</td>
+                <td>@Model.LoginHistory[i].Ip</td>
+            </tr>
 
 
         }

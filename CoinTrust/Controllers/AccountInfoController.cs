@@ -25,7 +25,16 @@ namespace CoinTrust.Controllers
             model.User = db.Account.Find(accountId);
             model.LoginHistory = db.LoginHistory.Where(m => m.User.AccountId == accountId).ToList();
             model.DigitCoinAccount = db.DigitCoinAccount.Where(m => m.User.AccountId == accountId).ToList();
-            //model.RealCoinAccount = db.RealCoinAccount.Where(model,model.User.AccountId == accountId);
+            try
+            {
+                model.RealCoinFund = db.RealCoinFund.Find(accountId);
+            }
+            catch
+            {
+
+            }
+
+
 
             return View(model);
         }

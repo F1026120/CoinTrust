@@ -47,7 +47,7 @@ namespace CoinTrust.DataAccessLayer
             context.RealCoinType.Add(ntd_type);
             context.SaveChanges();
 
-            RealCoinFund plf = new RealCoinFund { Amount = 1000, User = pl, RealCoinType = ntd_type, CoinStatus = CoinStatus.Free };
+            RealCoinFund plf = new RealCoinFund { Amount = 1000, AccountId = "pl", RealCoinType = ntd_type, CoinStatus = CoinStatus.Free };
             context.RealCoinFund.Add(plf);
             context.SaveChanges();
 

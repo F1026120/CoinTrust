@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Buy";
+}
+
+<h2>購買</h2>
+<div class="row">
+    <div class="col-md-3 "></div>
+    @using (Html.BeginForm("CreateTrade", "Trades", new { }, FormMethod.Post))
+    {
+        <input type="hidden" name="OrderId" value="@Model.OrderId" id="OrderId" />
+
+        <table class="table table-bordered col-md-6">
+            <tr>
+                <td>帳號餘額</td>
+                <td><strong class="mr-auto text-success">13500 NTD </strong><a href="#" class="col-md-auto">儲值</a></td>
+            </tr>
+            <tr>
+                <td>單價</td>
+                <td><strong class="text-danger">@Model.Price NTD</strong></td>
+
+            </tr>
+            <tr>
+                <td>剩餘數量</td>
+                <td>@Model.RemainQuantity</td>
+
+            </tr>
+            <tr>
+                <td>最低購買數量</td>
+                <td>@Model.MinQuantity</td>
+            </tr>
+            <tr>
+                <td class="col-auto">購買數量</td>
+                <td class="col-auto"><input type="text" class="form-control w-100" name="Quantity" id="Quantity" /></td>
+            </tr>
+            <tr>
+                <td>收幣錢包地址</td>
+                <td><input type="text" class="form-control w-100" name="BuyerAddress" id="BuyerAddress" /></td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="w-100 btn-success btn "><strong class="h3">確認購買</strong></button>
+                </td>
+            </tr>
+        </table>
+    }
+</div>

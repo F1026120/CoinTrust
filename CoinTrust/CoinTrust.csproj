@@ -483,6 +483,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Trades\ListTrade.cshtml" />
+    <Content Include="Views\Trades\Buy.cshtml" />
+    <Content Include="Views\Trades\Trading.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -493,7 +496,6 @@
   <ItemGroup>
     <Folder Include="Views\Order\" />
     <Folder Include="Views\ResetPassword\" />
-    <Folder Include="Views\Trades\" />
     <Folder Include="Views\Trade\" />
   </ItemGroup>
   <ItemGroup>

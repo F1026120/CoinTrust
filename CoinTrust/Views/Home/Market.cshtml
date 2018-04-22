@@ -1,4 +1,22 @@
 ﻿
+@{
+    var Low_Price = 15000.0;
+}
+<div class="row">
+    <div class="col-md-auto">
+        <a>排序:</a>
+        <a href="#">依訂單編號</a>
+        <a href="#">依價格排序</a>
+        <a href="#">依剩餘數量</a>
+    </div>
+    <div class="col-md-auto mr-md-auto">目前最便宜價格 <a class="text-success h4 "><u><strong>@Low_Price</strong></u></a> NTD</div>
+    <div class="col-md-auto">
+        目前的餘額： <strong class="text-success">13500 NTD</strong>
+        <a href="#">儲值</a> /
+        <a href="#">提款</a>
+
+    </div>
+</div>
 <table class="table table-striped table-light">
     <tr>
         <th>訂單編號</th>
@@ -11,6 +29,10 @@
 
     @foreach (var item in Model)
     {
+        if (item.Price > Low_Price)
+        {
+            Low_Price = item.Price;
+        }
         <tr>
 
             <td>
@@ -35,11 +57,12 @@
             {
                 <td>已取消</td>
             }
-                <td>
+            <td>
 
-                    @Html.ActionLink("查看訂單", "Details", "Orders", new { id = item.OrderId }, new { @class = "btn btn-success" })
-                    @Html.ActionLink("直接購買", "Buy","Trades", new { id = item.OrderId }, new { @class = "btn btn-success" })
-                </td>
+                @Html.ActionLink("查看訂單", "Details", "Orders", new { id = item.OrderId }, new { @class = "btn btn-success" })
+                @Html.TextBox("BuyQuantity")
+                @Html.ActionLink("購買", "Buy", "Trades", new { id = item.OrderId }, new { @class = "btn btn-danger" })
+            </td>
         </tr>
     }
 </table>

@@ -58,32 +58,39 @@ namespace CoinTrust.Controllers
         public ActionResult CreateOrder([Bind(Include = "Price,Quantity,MinQuantity,Address")] Order order)
         {
 
-            if (ModelState.IsValid)
+
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            try { order.Seller = db.Account.Find(accountId); } catch { return Content("DB accountid not found"); }
+            if (order.MinQuantity < 0 || order.MinQuantity > order.Quantity) return Content("最低數量設定錯誤");
+            order.RemainQuantity = order.Quantity;
+            order.CreateAt = DateTime.Now;
+            order.UpdateAt = DateTime.Now;
+            Account seller = db.Account.Find(accountId);
+            order.Seller = seller;
+            DigitCoinType digitCoinType = db.DigitCoinType.Find("ETH");
+            order.DigitCoinType = digitCoinType;
+            order.OrderStatus = OrderStatus.New;
+            Helper.ETHAddressHelper EAH = new Helper.ETHAddressHelper();
+            if (!(EAH.IsValid(order.Address)))
             {
-                var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
-                try { order.Seller = db.Account.Find(accountId); } catch { return Content("DB accountid not found"); }
-                if (order.MinQuantity < 0 || order.MinQuantity > order.Quantity) return Content("最低數量設定錯誤");
-                order.RemainQuantity = order.Quantity;
-                order.CreateAt = DateTime.Now;
-                order.UpdateAt = DateTime.Now;
-                Account seller = db.Account.Find(accountId);
-                order.Seller = seller;
-                DigitCoinType digitCoinType = db.DigitCoinType.Find("ETH");
-                order.DigitCoinType = digitCoinType;
-                order.OrderStatus = OrderStatus.New;
-                Helper.ETHAddressHelper EAH = new Helper.ETHAddressHelper();
-                if (!(EAH.IsValid(order.Address))) { return Content("Address 格式錯誤 訂單建立失敗 請再確認" + order.Address); }
-                if (EAH.GetBalance(order.Address) < order.Quantity) { return Content("Address ETH餘額不足 訂單建立失敗"); }
-                db.Order.Add(order);
-                try { db.SaveChanges(); }
-                catch
-                {
-                    return Content("DB faid");
-                }
-                return RedirectToAction("List");
-                //return Content("訂單建立成功");
+                @ViewBag.Title = "訂單建立錯誤";
+                ViewBag.Message = "Address 格式錯誤 訂單建立失敗 請再確認" + order.Address;
+                return View("Error");
             }
-            else return Content("訂單建立失敗");
+            if (EAH.GetBalance(order.Address) < order.Quantity)
+            {
+                @ViewBag.Title = "訂單建立錯誤";
+                ViewBag.Message = "Address ETH餘額不足 訂單建立失敗 餘額為" + EAH.GetBalance(order.Address);
+                return View("Error");
+            }
+            db.Order.Add(order);
+            try { db.SaveChanges(); }
+            catch
+            {
+                return Content("DB faid");
+            }
+            return RedirectToAction("List");
+            //return Content("訂單建立成功");
 
 
             //return View(order);

@@ -39,7 +39,14 @@ namespace CoinTrust.Controllers
         }
 
         [HttpGet]
-        public ActionResult Buy(int? id)
+        public ActionResult Buy(int? OrderId)
+        {
+            var order = db.Order.Find(OrderId);
+            return View(order);
+        }
+
+        [HttpGet]
+        public ActionResult BuyConfirm(int? id)
         {
             if (id == null)
             {
@@ -54,122 +61,64 @@ namespace CoinTrust.Controllers
             else if (order.OrderStatus != OrderStatus.New &&
                     order.OrderStatus != OrderStatus.PartialFilled)
             {
-                return Content("訂單已完售請重新選擇");
+                ViewBag.Message = "訂單已完售請重新選擇";
+                return View("Error");
             }
             else if (order.Seller.AccountId == accountId)
             {
-                return RedirectToAction("List","Orders");
+                ViewBag.Message = "無法對自己的訂單下單，轉至訂單管理頁面";
+                return RedirectToAction("List", "Orders");
             }
-            
-                
+
             return View(order);
         }
 
         [HttpPost]
-        public ActionResult BuyConfirm([Bind(Include = "Quantity,BuyerAddress")] Trade POST_trade,int Orderid)
+        public ActionResult CreateTrade([Bind(Include = "Quantity,BuyerAddress")] Trade POST_trade, int OrderId)//建立交易訂單
         {
             var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
             POST_trade.TradeStatus = TradeStatus.Trading;
-            POST_trade.Order = db.Order.Find(Orderid);
+            POST_trade.Order = db.Order.Find(OrderId);
             POST_trade.CreateAt = DateTime.Now;
             POST_trade.Buyer = db.Account.Find(accountId);
+            db.Trade.Add(POST_trade);
             db.SaveChanges();
             Helper.EmailHelper emailHelper = new Helper.EmailHelper();
-            string msg = "";
+            string msg = "";//填入通知信內容
             emailHelper.SendToEmailWithSubjectAndMsg(POST_trade.Order.Seller.AccountId, "訂單被下訂", msg);
-
             return View();
         }
 
-
-
-        // GET: Trades/Create
-        public ActionResult Create()
+        public ActionResult ListTrade()//列出Trade
         {
-            return View();
-        }
-
-        // POST: Trades/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TradeId,Quantity,TradeStatus,CreateAt")] Trade trade)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Trade.Add(trade);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            ViewBag.Account = accountId;
+            var trade = db.Trade.Where(m => m.Buyer.AccountId == accountId || m.Order.Seller.AccountId == accountId && m.TradeStatus == TradeStatus.Trading).ToList();
 
             return View(trade);
+
         }
 
-        // GET: Trades/Edit/5
-        public ActionResult Edit(int? id)
+
+
+        [HttpGet]
+        public ActionResult Trading(int? TradeId)//交易中的訂單
         {
-            if (id == null)
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            var trade = db.Trade.Find(TradeId);
+            if (trade.Buyer.AccountId == accountId)
+                return View(trade);
+            else if (trade.Order.Seller.AccountId == accountId)
+                return View("SellerTrading", trade);
+            else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ViewBag.Message = "您不是訂單所有人";
+                return View("Error");
             }
-            Trade trade = db.Trade.Find(id);
-            if (trade == null)
-            {
-                return HttpNotFound();
-            }
-            return View(trade);
         }
 
-        // POST: Trades/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TradeId,Quantity,TradeStatus,CreateAt")] Trade trade)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(trade).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(trade);
-        }
 
-        // GET: Trades/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Trade trade = db.Trade.Find(id);
-            if (trade == null)
-            {
-                return HttpNotFound();
-            }
-            return View(trade);
-        }
 
-        // POST: Trades/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Trade trade = db.Trade.Find(id);
-            db.Trade.Remove(trade);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -23,77 +23,87 @@
                 </dl>
             </div>
             <div class="row-md-2">
-                <button class="btn btn-success">點選下單</button>
+                @Html.ActionLink("點選下單", "Buy", "Trades", new { id = Model.OrderId }, new { @class = "btn btn-success" })
             </div>
         </div>
         <div class="col-md-8">
-            <dl class="dl-horizontal ">
-                <dt>@Html.DisplayNameFor(model => model.Price)</dt>
-
-                <dd>@Html.DisplayFor(model => model.Price)</dd>
-
-                <dt>@Html.DisplayNameFor(model => model.Quantity)</dt>
-
-                <dd>@Html.DisplayFor(model => model.Quantity)</dd>
-
-                <dt>@Html.DisplayNameFor(model => model.RemainQuantity)</dt>
-
-                <dd>@Html.DisplayFor(model => model.RemainQuantity)</dd>
-
-                <dt>@Html.DisplayNameFor(model => model.MinQuantity)</dt>
-
-                <dd>@Html.DisplayFor(model => model.MinQuantity)</dd>
-
-                <dt>@Html.DisplayNameFor(model => model.Address)</dt>
-
-                <dd>@Html.DisplayFor(model => model.Address)</dd>
-
-                <dt>@Html.DisplayNameFor(model => model.OrderStatus)</dt>
-
-                <dd>@Html.DisplayFor(model => model.OrderStatus)</dd>
-
-                <dt>@Html.DisplayNameFor(model => model.CreateAt)</dt>
-
-                <dd>@Html.DisplayFor(model => model.CreateAt)</dd>
-
-                <dt>@Html.DisplayNameFor(model => model.UpdateAt)</dt>
-
-                <dd>@Html.DisplayFor(model => model.UpdateAt)</dd>
-
-            </dl>
+            <table class="table table-bordered table-light">
+                <tr>
+                    <td colspan="2">@Html.DisplayNameFor(model => model.Price)</td>
+                    <td colspan="2">@Html.DisplayFor(model => model.Price) NTD</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Quantity)</td>
+                    <td>@Html.DisplayFor(model => model.Quantity)</td>
+                    <td>@Html.DisplayNameFor(model => model.RemainQuantity)</td>
+                    <td>@Html.DisplayFor(model => model.RemainQuantity)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Address)</td>
+                    <td colspan="3">@Html.DisplayFor(model => model.Address)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.CreateAt)</td>
+                    <td colspan="3">@Html.DisplayFor(model => model.CreateAt)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.UpdateAt)</td>
+                    <td colspan="3">@Html.DisplayFor(model => model.UpdateAt)</td>
+                </tr>
+            </table>
+            <br />
+            <div class="row">
+                <div class="col">購買數量：</div>
+                <div class="col-md-4 row">
+                    @using (Html.BeginForm("Buy", "Trades", FormMethod.Post, new { @class = "from-contorl row" }))
+                    {
+                        @Html.TextBox("Quantity");
+                        @Html.Hidden("OrderId", Model.OrderId);
+                        <input class="btn btn-success" type="submit" value="購買" />
+                    }
+                </div>
+                <div class="col-md-4">總金額：1500 NTD</div>
+            </div>
         </div>
     </div>
 </div>
+
+
 @*
-    <table class="table">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.OrderId)</th>
-            <th>@Html.DisplayNameFor(model => model.Price)</th>
-            <th>@Html.DisplayNameFor(model => model.Quantity)</th>
-            <th>@Html.DisplayNameFor(model => model.RemainQuantity)</th>
-            <th>@Html.DisplayNameFor(model => model.MinQuantity)</th>
-            <th>@Html.DisplayNameFor(model => model.Address)</th>
-            <th>@Html.DisplayNameFor(model => model.OrderStatus)</th>
-            <th>@Html.DisplayNameFor(model => model.CreateAt)</th>
-            <th>@Html.DisplayNameFor(model => model.UpdateAt)</th>
-        </tr>
-        <tr>
-            <td>@Html.DisplayFor(model => model.OrderId)</td>
-            <td>@Html.DisplayFor(model => model.Price)</td>
-            <td>@Html.DisplayFor(model => model.Quantity)</td>
-            <td>@Html.DisplayFor(model => model.RemainQuantity)</td>
-            <td>@Html.DisplayFor(model => model.MinQuantity)</td>
-            <td>@Html.DisplayFor(model => model.Address)</td>
-            <td>@Html.DisplayFor(model => model.OrderStatus)</td>
-            <td>@Html.DisplayFor(model => model.CreateAt)</td>
-            <td>@Html.DisplayFor(model => model.UpdateAt)</td>
-        </tr>
+    <div class="col-md-8">
+        <dl class="dl-horizontal ">
+            <dt>@Html.DisplayNameFor(model => model.Price)</dt>
 
+            <dd>@Html.DisplayFor(model => model.Price)</dd>
 
+            <dt>@Html.DisplayNameFor(model => model.Quantity)</dt>
 
-    </table>
+            <dd>@Html.DisplayFor(model => model.Quantity)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.RemainQuantity)</dt>
+
+            <dd>@Html.DisplayFor(model => model.RemainQuantity)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.MinQuantity)</dt>
+
+            <dd>@Html.DisplayFor(model => model.MinQuantity)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Address)</dt>
+
+            <dd>@Html.DisplayFor(model => model.Address)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.OrderStatus)</dt>
+
+            <dd>@Html.DisplayFor(model => model.OrderStatus)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.CreateAt)</dt>
+
+            <dd>@Html.DisplayFor(model => model.CreateAt)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.UpdateAt)</dt>
+
+            <dd>@Html.DisplayFor(model => model.UpdateAt)</dd>
+
+        </dl>
+    </div>
 *@
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
