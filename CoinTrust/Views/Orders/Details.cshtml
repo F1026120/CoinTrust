@@ -53,8 +53,8 @@
             </table>
             <br />
             <div class="row">
-                <div class="col">購買數量：</div>
-                <div class="col-md-4 row">
+                <div class="col-md-auto">購買數量：</div>
+                <div class="col-md-auto row">
                     @using (Html.BeginForm("Buy", "Trades", FormMethod.Post, new { @class = "from-contorl row" }))
                     {
                         @Html.TextBox("Quantity");

@@ -24,7 +24,7 @@
         <th>剩餘數量</th>
         <th>最低購買數量</th>
         <th>訂單狀態</th>
-        <th>操作</th>
+        <th class="col-sm-auto">操作</th>
     </tr>
 
     @foreach (var item in Model)
@@ -60,7 +60,7 @@
             <td>
 
                 @Html.ActionLink("查看訂單", "Details", "Orders", new { id = item.OrderId }, new { @class = "btn btn-success" })
-                @Html.TextBox("BuyQuantity")
+                @Html.TextBox("BuyQuantity", null, new { @class = "col-md-auto" })
                 @Html.ActionLink("購買", "Buy", "Trades", new { id = item.OrderId }, new { @class = "btn btn-danger" })
             </td>
         </tr>

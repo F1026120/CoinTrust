@@ -24,7 +24,7 @@
                 </dl>
             </div>
             <div class="row-md-2">
-                @Html.ActionLink("點選下單", "Buy", "Trades", new { id = Model.Order.OrderId }, new { @class = "btn btn-success" })
+                @*@Html.ActionLink("點選下單", "Buy", "Trades", new { id = Model.Order.OrderId }, new { @class = "btn btn-success" })*@
                 <a class="btn btn-danger text-light">聯絡買家</a>
             </div>
         </div>
@@ -56,8 +56,9 @@
 
                     <div class="col-md-4 h4">總金額：1500 NTD</div>
                 </div>
-                <p class="text-danger h4 "><strong>請在24小時內將貨幣轉至  後到此網頁點選</strong><button class="btn btn-success">已發送</button></p>
                 <span class="border border-primary h4">@Model.BuyerAddress</span> <span><button class="btn btn-info">點選複製</button></span>
+                <p class="text-danger h4 "><strong>請在24小時內將貨幣轉至錢包後並輸入交易代碼後點選</strong><button class="btn btn-success">已發送</button></p>
+                <div class="row"><a class="col-md-auto">交易代碼(txHash)：</a><input type="text" class="form-control col-md-9" /></div>
             </div>
         </div>
     </div>
