@@ -148,5 +148,18 @@ namespace CoinTrust.Controllers
         {
             return View();
         }
+        public ActionResult Deposit()//儲值
+        {
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            var model = db.Account.Find(accountId);
+
+            return View(model);
+        }
+        public ActionResult Withdrawal()//提款
+        {
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+
+            return View();
+        }
     }
 }

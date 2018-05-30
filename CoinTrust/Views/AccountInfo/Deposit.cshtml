@@ -1,0 +1,22 @@
+﻿@model CoinTrust.Models.Account
+
+@{
+    ViewBag.Title = "儲值頁面";
+}
+
+<h2>帳號儲值</h2>
+<div>
+    <table class="table-active table-bordered">
+        <tr>
+            <td>你的帳戶ID為： </td>
+            <td>@Model.AccountId</td>
+        </tr>
+
+        <tr>
+            <td>你的帳戶餘額為： </td>
+            <td>@Model.Fund.Amount</td>
+        </tr>
+    </table>
+</div>
+
+<a href="https://p.opay.tw/YTnkC"><img src="https://payment.opay.tw/Content/themes/WebStyle201404/images/allpay.png" /></a>

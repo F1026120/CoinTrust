@@ -14,11 +14,11 @@
         @if (Model.RealCoinFund == null)
         {
             <h3>目前的餘額： 此帳號尚未認證 尚未設定餘額</h3>
-            <a href="/Home/Index">請點此重新發送驗證信</a>
+            <a href="/Home/SendCode">請點此重新發送驗證信</a>
         }
         else
         {
-            <h3>目前的餘額： @Model.RealCoinFund.Amount NTD</h3>
+            <h3>目前的餘額： @Model.User.Fund.Amount NTD</h3> <a href="/Accountinfo/Deposit">儲值</a>
         }
         @Html.Partial("_PhoneAuthenticator", Model)
     </div>

@@ -43,5 +43,7 @@ namespace CoinTrust.Models
         [Required]
         [DisplayName("買家錢包地址")]
         public string BuyerAddress { get; set; }
+
+        public string TxHash { get; set; }
     }
 }

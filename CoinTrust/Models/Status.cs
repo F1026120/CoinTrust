@@ -23,6 +23,10 @@ namespace CoinTrust.Models
         /// </summary>
         Trading,
         /// <summary>
+        /// 賣家已發送
+        /// </summary>
+        Sended,
+        /// <summary>
         /// 交易取消
         /// </summary>
         Canceled

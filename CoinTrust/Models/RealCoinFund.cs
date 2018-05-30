@@ -11,10 +11,9 @@ namespace CoinTrust.Models
     {
 
         [Key]
-        [Required]
-        public string AccountId { get; set; }
+        public string AccoundId { get; set; }
 
-        //[Required]
+
         //public virtual Account User { get; set; }
 
         public virtual RealCoinType RealCoinType { get; set; }

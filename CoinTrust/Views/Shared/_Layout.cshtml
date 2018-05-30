@@ -29,23 +29,23 @@
 
                 <ul class="nav navbar-nav nav-item">
                     @if (Request.Cookies.AllKeys.Contains(FormsAuthentication.FormsCookieName))
-            {
-                <li>@Html.ActionLink("目前市場訂單", "Market", "Home", null, new { @class = "nav-link" })</li>
-        <li>@Html.ActionLink("帳號資訊", "Info", "AccountInfo", null, new { @class = "nav-link" })</li>
-        <li class="dropdown">
+                    {
+                        <li>@Html.ActionLink("目前市場訂單", "Market", "Home", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("帳號資訊", "Info", "AccountInfo", null, new { @class = "nav-link" })</li>
+                        <li class="dropdown">
 
-            <a class="btn dropdown-toggle nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                訂單管理
-                <span class="caret"></span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="btn dropdown-item" href="/Orders/CreateOrder">建立訂單</a>
-                <a class="btn dropdown-item" href="/Orders/List">我的訂單</a>
-                <a class="btn dropdown-item" href="/Trades/ListTrade">待交易<span class="badge badge-danger">1</span></a>
-            </div>
+                            <a class="btn dropdown-toggle nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                訂單管理
+                                <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="btn dropdown-item" href="/Orders/CreateOrder">建立訂單</a>
+                                <a class="btn dropdown-item" href="/Orders/List">我的訂單</a>
+                                <a class="btn dropdown-item" href="/Trades/ListTrade">待交易<span class="badge badge-danger">1</span></a>
+                            </div>
 
-        </li>
-}
+                        </li>
+                    }
 
 
                 </ul>
@@ -53,15 +53,15 @@
 
                 <ul class="nav navbar-nav nav-item">
                     @if (Request.Cookies.AllKeys.Contains(FormsAuthentication.FormsCookieName))
-            {
+                    {
 
-                <li class="right">@Html.ActionLink("登出", "SignOut", "Account", null, new { @class = "nav-link" })</li>
-    }
-    else
-    {
-        <li>@Html.ActionLink("登入", "SignIn", "Account", null, new { @class = "nav-link" })</li>
-        <li> @Html.ActionLink("註冊", "SignUp", "Account", null, new { @class = "nav-link" }) </li>
-}
+                        <li class="right">@Html.ActionLink("登出", "SignOut", "Account", null, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("登入", "SignIn", "Account", null, new { @class = "nav-link" })</li>
+                        <li> @Html.ActionLink("註冊", "SignUp", "Account", null, new { @class = "nav-link" }) </li>
+                    }
 
                 </ul>
             </div>

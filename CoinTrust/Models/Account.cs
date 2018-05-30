@@ -48,5 +48,7 @@ namespace CoinTrust.Models
 
         [Required]
         public DateTime UpdateAt { get; set; }
+
+        public virtual RealCoinFund Fund { get; set; }
     }
 }

@@ -74,6 +74,23 @@ namespace CoinTrust.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdateTxhash(string TxHash, int TradeId)
+        {
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            var Trade = db.Trade.Find(TradeId);
+            if (Trade.Order.Seller.AccountId != accountId) return View("Error");
+            Trade.TxHash = TxHash;
+            Trade.TradeStatus = TradeStatus.Sended;
+            db.SaveChanges();
+
+
+
+            return RedirectToAction("ListTrade", "Trades");
+
+        }
+
+
+        [HttpPost]
         public ActionResult CreateTrade([Bind(Include = "Quantity,BuyerAddress")] Trade POST_trade, int OrderId)//建立交易訂單
         {
             var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
@@ -82,19 +99,29 @@ namespace CoinTrust.Controllers
             POST_trade.CreateAt = DateTime.Now;
             POST_trade.Buyer = db.Account.Find(accountId);
             db.Trade.Add(POST_trade);
+            POST_trade.Order.Quantity -= POST_trade.Quantity;
+            if (POST_trade.Order.Quantity == 0)
+                POST_trade.Order.OrderStatus = OrderStatus.Filled;
+            else
+                POST_trade.Order.OrderStatus = OrderStatus.PartialFilled;
             db.SaveChanges();
-            Helper.EmailHelper emailHelper = new Helper.EmailHelper();
-            string msg = "";//填入通知信內容
+            Helper.EmailHelper emailHelper = new Helper.EmailHelper();//填入通知信內容
+            string msg = "";
+            msg += "訂單已被下訂，買家ID:" + POST_trade.Buyer.AccountId;
+            msg += "\r\n購買數量:" + POST_trade.Quantity;
+            msg += "\r\n購買單價:" + POST_trade.Order.Price;
+            msg += "\r\n購買總價:" + POST_trade.Quantity * POST_trade.Order.Price;
+            msg += "\r\n點選連結查看訂單內容: http://CoinTrust.myddns.me:50655/Trades/Trading/" + POST_trade.TradeId;
             emailHelper.SendToEmailWithSubjectAndMsg(POST_trade.Order.Seller.AccountId, "訂單被下訂", msg);
-            return View();
+            return RedirectToAction("ListTrade", "Trades");
         }
 
         public ActionResult ListTrade()//列出Trade
         {
-            
+
             var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
             ViewBag.Account = accountId;
-            var trade = db.Trade.Where(m => m.Buyer.AccountId == accountId || m.Order.Seller.AccountId == accountId && m.TradeStatus == TradeStatus.Trading).ToList();
+            var trade = db.Trade.Where(m => (m.Buyer.AccountId == accountId || m.Order.Seller.AccountId == accountId) && (m.TradeStatus == TradeStatus.Trading || m.TradeStatus == TradeStatus.Sended)).ToList();
 
             return View(trade);
 
@@ -110,15 +137,50 @@ namespace CoinTrust.Controllers
             if (trade.Buyer.AccountId == accountId)
                 return View(trade);
             else if (trade.Order.Seller.AccountId == accountId)
-                return View("SellerTrading", trade);
+                return View(trade);
             else
             {
                 ViewBag.Message = "您不是訂單所有人";
+
                 return View("Error");
             }
         }
 
+        [HttpGet]
+        public ActionResult Cancel(int? TradeId)
+        {
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            var Trade = db.Trade.Find(TradeId);
+            if (accountId == Trade.Order.Seller.AccountId || accountId == Trade.Buyer.AccountId)
+            {
+                Trade.TradeStatus = TradeStatus.Canceled;
 
+                db.SaveChanges();
+                return RedirectToAction("ListTrade", "Trades");
+
+            }
+            else
+            {
+                ViewBag.Message = "你不是訂單的所有人";
+                return View("Error");
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult TradeFinish(int? TradeId)
+        {
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            var Trade = db.Trade.Find(TradeId);
+            if(accountId == Trade.Buyer.AccountId)
+            {
+                Trade.TradeStatus = TradeStatus.finished;
+                db.SaveChanges();
+                return RedirectToAction("ListTrade", "Trades");
+            }
+            ViewBag.Message = "你不是訂單的所有人";
+            return View("Error");
+        }
 
     }
 }
