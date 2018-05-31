@@ -487,6 +487,7 @@
     <Content Include="Views\Trades\Buy.cshtml" />
     <Content Include="Views\Trades\Trading.cshtml" />
     <Content Include="Views\AccountInfo\Deposit.cshtml" />
+    <Content Include="Views\Trades\ShowTxHash.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

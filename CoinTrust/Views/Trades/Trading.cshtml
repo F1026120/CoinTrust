@@ -119,6 +119,10 @@ else if (Accid == Model.Buyer.AccountId)
                             <td>區塊鏈交易代碼(TxHash)</td>
                             <td colspan="3">@Html.DisplayFor(model => model.TxHash)<a href="https://etherscan.io/tx/@Model.TxHash">交易查詢</a></td>
                         </tr>
+                        <tr>
+                            <td>@ViewBag.value</td>
+
+                        </tr>
                     }
                     <tr>
                         <td>@Html.DisplayNameFor(model => model.CreateAt)</td>
@@ -133,11 +137,15 @@ else if (Accid == Model.Buyer.AccountId)
                         <div class="col-md-4 h4">總金額：@(Convert.ToInt32(Model.Order.Price) * Convert.ToDouble(Model.Quantity)) NTD</div>
                     </div>
                     <span class="border border-primary h4">@Model.BuyerAddress</span> <span><a href="https://etherscan.io/address/@Model.BuyerAddress" class="btn btn-info">查詢錢包</a></span>
-                    @using (Html.BeginForm("TradeFinish", "Trades", new { }, FormMethod.Post))
+                    @if (Model.TradeStatus == CoinTrust.Models.TradeStatus.Sended)
                     {
-                        <input type="hidden" name="TradeId" value="@Model.TradeId" id="TradeId" />
+                        using (Html.BeginForm("TradeFinish", "Trades", new { }, FormMethod.Post))
+                        {
+                            <input type="hidden" name="TradeId" value="@Model.TradeId" id="TradeId" />
 
-                        <p class="text-danger h4 "><strong>賣家已發送ETH到錢包 請在24小時內點選確認  </strong><input type="submit" class="btn btn-warning rounded" value="已確認收到"></p>
+                            <p class="text-danger h4 "><strong>賣家已發送ETH到錢包 請在24小時內點選確認  </strong><input type="submit" class="btn btn-warning rounded" value="已確認收到"></p>
+                        }
+                            <p>賣家已發送ETH，還沒收到幣嗎? <a href="#">點這裡申訴/鎖定</a></p>
                     }
                 </div>
             </div>

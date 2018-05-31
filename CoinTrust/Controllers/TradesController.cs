@@ -41,7 +41,13 @@ namespace CoinTrust.Controllers
         [HttpGet]
         public ActionResult Buy(int? OrderId)
         {
+            var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
             var order = db.Order.Find(OrderId);
+            if (order.Seller.AccountId == accountId)
+            {
+                ViewBag.Message = "無法對自己下單";
+                return View("Error");
+            }
             return View(order);
         }
 
@@ -94,6 +100,12 @@ namespace CoinTrust.Controllers
         public ActionResult CreateTrade([Bind(Include = "Quantity,BuyerAddress")] Trade POST_trade, int OrderId)//建立交易訂單
         {
             var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+            var order = db.Order.Find(OrderId);
+            if (order.Seller.AccountId == accountId)
+            {
+                ViewBag.Message = "無法對自己下單";
+                return View("Error");
+            }
             POST_trade.TradeStatus = TradeStatus.Trading;
             POST_trade.Order = db.Order.Find(OrderId);
             POST_trade.CreateAt = DateTime.Now;
@@ -172,7 +184,7 @@ namespace CoinTrust.Controllers
         {
             var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
             var Trade = db.Trade.Find(TradeId);
-            if(accountId == Trade.Buyer.AccountId)
+            if (accountId == Trade.Buyer.AccountId)
             {
                 Trade.TradeStatus = TradeStatus.finished;
                 db.SaveChanges();
@@ -181,6 +193,20 @@ namespace CoinTrust.Controllers
             ViewBag.Message = "你不是訂單的所有人";
             return View("Error");
         }
+
+        [HttpGet]
+        public ActionResult ShowTxHash(int? TradeId)
+        {
+
+            var Trade = db.Trade.Find(TradeId);
+
+            Helper.TransactionByTxhash transactionByTxhash = new Helper.TransactionByTxhash(Trade.TxHash);
+            ViewBag.value = transactionByTxhash.Quantity;
+
+
+            return View();
+        }
+
 
     }
 }

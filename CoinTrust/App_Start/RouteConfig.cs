@@ -48,6 +48,11 @@ namespace CoinTrust
                 url: "Trades/Cancel/{TradeId}",
               defaults: new { controller = "Trades", action = "Cancel" }
             );
+            routes.MapRoute(
+                name: "ShowTxHash",
+                 url: "Trades/ShowTxHash/{TradeId}",
+               defaults: new { controller = "Trades", action = "ShowTxHash" }
+             );
 
 
 
