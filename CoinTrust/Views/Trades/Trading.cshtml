@@ -4,8 +4,7 @@
     ViewBag.Title = "Trading";
     string Accid = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
 }
-<a>@Accid</a>
-<h2>訂單詳細資料 @FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData</h2>
+<h2>訂單詳細資料</h2>
 @if (Accid == Model.Order.Seller.AccountId)
 {
     <div class="container">
@@ -46,6 +45,17 @@
                         <td colspan="3">@Html.DisplayFor(model => model.BuyerAddress)</td>
                     </tr>
                     <tr>
+                        <td>訂單狀態</td>
+                        <td colspan="3">@Model.TradeStatus</td>
+                    </tr>
+                    @if (Model.TradeStatus == CoinTrust.Models.TradeStatus.Sended)
+                    {
+                        <tr>
+                            <td>區塊鏈交易代碼(TxHash)</td>
+                            <td colspan="3">@Html.DisplayFor(model => model.TxHash)<a href="https://etherscan.io/tx/@Model.TxHash">交易查詢</a></td>
+                        </tr>
+                    }
+                    <tr>
                         <td>@Html.DisplayNameFor(model => model.CreateAt)</td>
                         <td colspan="3">@Html.DisplayFor(model => model.CreateAt)</td>
                     </tr>
@@ -61,9 +71,17 @@
                     @using (Html.BeginForm("UpdateTxhash", "Trades", new { }, FormMethod.Post))
                     {
                         <input type="hidden" name="TradeId" value="@Model.TradeId" id="TradeId" />
-                        <p class="text-danger h4 "><strong>請在24小時內將貨幣轉至錢包後並輸入交易代碼後點選</strong><input type="submit" class="btn btn-success" value="已發送"></p>
+                        if (Model.TradeStatus == CoinTrust.Models.TradeStatus.Trading)
+                        {
+                            <p class="text-danger h4 "><strong>請在24小時內將貨幣轉至錢包後並輸入交易代碼後點選</strong><input type="submit" class="btn btn-success" value="已發送"></p>
+                        }
+                        else if (Model.TradeStatus == CoinTrust.Models.TradeStatus.Sended)
+                        {
+                            <p class="text-danger h4 "><strong>貨幣已發送，等待買家確認收到後，系統將撥款給您</strong><input type="submit" class="btn btn-success" value="修改TxHash"></p>
 
-                        <div class="row"><a class="col-md-auto">交易代碼(txHash)：</a><input type="text" name="TxHash" class="form-control col-md-9" /></div>
+                        }
+
+                        <div class="row"><a class="col-md-auto">交易代碼(txHash)：</a><input type="text" name="TxHash" class="form-control col-md-9" value="@Model.TxHash" /></div>
                     }
                 </div>
             </div>
@@ -119,10 +137,6 @@ else if (Accid == Model.Buyer.AccountId)
                             <td>區塊鏈交易代碼(TxHash)</td>
                             <td colspan="3">@Html.DisplayFor(model => model.TxHash)<a href="https://etherscan.io/tx/@Model.TxHash">交易查詢</a></td>
                         </tr>
-                        <tr>
-                            <td>@ViewBag.value</td>
-
-                        </tr>
                     }
                     <tr>
                         <td>@Html.DisplayNameFor(model => model.CreateAt)</td>
@@ -132,6 +146,10 @@ else if (Accid == Model.Buyer.AccountId)
                 <br />
                 <div class="bg-light">
                     <div class="row">
+                        <p class="h4">已通知賣家發幣，請稍等</p>
+                    </div>
+                    <div class="row">
+
                         <div class="col h4">購買數量：@Model.Quantity ETH</div>
 
                         <div class="col-md-4 h4">總金額：@(Convert.ToInt32(Model.Order.Price) * Convert.ToDouble(Model.Quantity)) NTD</div>
@@ -145,7 +163,7 @@ else if (Accid == Model.Buyer.AccountId)
 
                             <p class="text-danger h4 "><strong>賣家已發送ETH到錢包 請在24小時內點選確認  </strong><input type="submit" class="btn btn-warning rounded" value="已確認收到"></p>
                         }
-                            <p>賣家已發送ETH，還沒收到幣嗎? <a href="#">點這裡申訴/鎖定</a></p>
+                        <p>賣家已發送ETH，還沒收到幣嗎? <a href="#">點這裡申訴/鎖定</a></p>
                     }
                 </div>
             </div>

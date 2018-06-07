@@ -204,9 +204,9 @@ namespace CoinTrust.Controllers
                 //認證成功的帳號 設置Account CoinFund
                 RealCoinFund realCoinFund = new RealCoinFund();
                 realCoinFund.AccoundId = id;
-                realCoinFund.Amount = 500;
+                realCoinFund.Amount = 20000;
                 realCoinFund.CoinStatus = CoinStatus.Free;
-
+                account.Fund = realCoinFund;
                 db.RealCoinFund.Add(realCoinFund);
 
                 db.SaveChanges();

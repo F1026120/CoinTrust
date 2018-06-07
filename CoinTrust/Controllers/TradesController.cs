@@ -111,7 +111,7 @@ namespace CoinTrust.Controllers
             POST_trade.CreateAt = DateTime.Now;
             POST_trade.Buyer = db.Account.Find(accountId);
             db.Trade.Add(POST_trade);
-            POST_trade.Order.Quantity -= POST_trade.Quantity;
+            POST_trade.Order.RemainQuantity -= POST_trade.Quantity;
             if (POST_trade.Order.Quantity == 0)
                 POST_trade.Order.OrderStatus = OrderStatus.Filled;
             else
@@ -184,9 +184,12 @@ namespace CoinTrust.Controllers
         {
             var accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
             var Trade = db.Trade.Find(TradeId);
+            double Trade_Price = Trade.Quantity * Trade.Order.Price;
             if (accountId == Trade.Buyer.AccountId)
             {
                 Trade.TradeStatus = TradeStatus.finished;
+                Trade.Buyer.Fund.Amount -= Trade_Price;
+                Trade.Order.Seller.Fund.Amount += Trade_Price;
                 db.SaveChanges();
                 return RedirectToAction("ListTrade", "Trades");
             }
@@ -202,6 +205,8 @@ namespace CoinTrust.Controllers
 
             Helper.TransactionByTxhash transactionByTxhash = new Helper.TransactionByTxhash(Trade.TxHash);
             ViewBag.value = transactionByTxhash.Quantity;
+            ViewBag.from = transactionByTxhash.from;
+            ViewBag.to = transactionByTxhash.to;
 
 
             return View();

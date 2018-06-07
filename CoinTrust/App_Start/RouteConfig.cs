@@ -22,7 +22,7 @@ namespace CoinTrust
             );
             routes.MapRoute(
                 name: "CertifyEmail",
-                url: "Account/{action}/{id}/{code}",
+                url: "Account/CertifyEmail/{id}/{code}",
                 defaults: new { controller = "Account", action = "CertifyEmail", id = UrlParameter.Optional, code = UrlParameter.Optional }//帳號認證
             );
 
@@ -53,6 +53,11 @@ namespace CoinTrust
                  url: "Trades/ShowTxHash/{TradeId}",
                defaults: new { controller = "Trades", action = "ShowTxHash" }
              );
+            routes.MapRoute(
+                name: "TradeFinish",
+               url: "Trades/TradeFinish/{TradeId}",
+              defaults: new { controller = "Trades", action = "TradeFinish" }
+            );
 
 
 

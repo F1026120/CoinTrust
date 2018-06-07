@@ -1,7 +1,36 @@
 ﻿
 @{
-    var Low_Price = 15000.0;
+    var accountId = "";
+    double Amount = 0.0;
+    try
+    {
+        accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+        CoinTrust.DataAccessLayer.DatabaseContext db = new CoinTrust.DataAccessLayer.DatabaseContext();
+        var Fund = db.RealCoinFund.Find(accountId);
+        Amount = Fund.Amount;
+    }
+
+
+
+    catch
+    {
+    }
+
+    var Low_Price = 999999.0;
+    foreach (var item in Model)
+    {
+        if (item.OrderStatus == CoinTrust.Models.OrderStatus.New)
+        {
+            if (item.Price < Low_Price)
+            {
+                Low_Price = item.Price;
+            }
+        }
+
+    }
 }
+
+
 <div class="row">
     <div class="col-md-auto">
         <a>排序:</a>
@@ -11,7 +40,7 @@
     </div>
     <div class="col-md-auto mr-md-auto">目前最便宜價格 <a class="text-success h4 "><u><strong>@Low_Price</strong></u></a> NTD</div>
     <div class="col-md-auto">
-        目前的餘額： <strong class="text-success">13500 NTD</strong>
+        目前的餘額： <strong class="text-success">@Amount NTD</strong>
         <a href="/Accountinfo/Deposit">儲值</a> /
         <a href="#">提款</a>
 
@@ -56,6 +85,10 @@
             else if (item.OrderStatus == CoinTrust.Models.OrderStatus.Canceled)
             {
                 <td>已取消</td>
+            }
+            else if (item.OrderStatus == CoinTrust.Models.OrderStatus.PartialFilled)
+            {
+                <td>剩餘部分</td>
             }
             <td>
 
