@@ -1,6 +1,22 @@
 ﻿@model CoinTrust.Models.Order
 @{
     ViewBag.Title = "Buy";
+    var accountId = "";
+    double Amount = 0.0;
+    try
+    {
+        accountId = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
+        CoinTrust.DataAccessLayer.DatabaseContext db = new CoinTrust.DataAccessLayer.DatabaseContext();
+        var Fund = db.RealCoinFund.Find(accountId);
+        Amount = Fund.Amount;
+    }
+
+
+
+    catch
+    {
+    }
+
 }
 
 <h2>購買</h2>
@@ -13,7 +29,7 @@
         <table class="table table-bordered col-md-6">
             <tr>
                 <td>帳號餘額</td>
-                <td><strong class="mr-auto text-success">13500 NTD  </strong><a href="#" class="col-md-auto">儲值</a></td>
+                <td><strong class="mr-auto text-success">@Amount NTD  </strong><a href="#" class="col-md-auto">儲值</a></td>
             </tr>
             <tr>
                 <td>單價</td>

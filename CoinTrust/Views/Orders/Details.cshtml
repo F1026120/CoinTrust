@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "訂單詳細資料";
+    string Accid = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData;
 }
 
 <h2>訂單詳細資料</h2>
@@ -23,7 +24,11 @@
                 </dl>
             </div>
             <div class="row-md-2">
-                @Html.ActionLink("點選下單", "Buy", "Trades", new { id = Model.OrderId }, new { @class = "btn btn-success" })
+                @if (Model.Seller.AccountId != Accid)
+                {
+                    @Html.ActionLink("點選下單", "Buy", "Trades", new { id = Model.OrderId }, new { @class = "btn btn-success" })
+                }
+
             </div>
         </div>
         <div class="col-md-8">
@@ -53,7 +58,7 @@
             </table>
             <br />
             <div class="row">
-                <div class="col-md-auto">購買數量：</div>
+                @*<div class="col-md-auto">購買數量：</div>*@
                 <div class="col-md-auto row">
                     @*@using (Html.BeginForm("Buy", "Trades", new { id = Model.OrderId }, FormMethod.Post, new { @class = "from-contorl row" }))
                         {
@@ -61,10 +66,13 @@
                             @Html.Hidden("OrderId", Model.OrderId);
                             <input class="btn btn-success" type="submit" value="購買" />
                         }*@
-                    @Html.ActionLink("點選下單", "Buy", "Trades", new { id = Model.OrderId }, new { @class = "btn btn-success" })
+                    @if (Model.Seller.AccountId != Accid)
+                    {
+                        @Html.ActionLink("點選下單", "Buy", "Trades", new { id = Model.OrderId }, new { @class = "btn btn-success" })
+                    }
 
                 </div>
-                <div class="col-md-4">總金額：1500 NTD</div>
+                @*<div class="col-md-4">總金額：1500 NTD</div>*@
             </div>
         </div>
     </div>

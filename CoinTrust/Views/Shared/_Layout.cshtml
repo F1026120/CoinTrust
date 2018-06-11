@@ -1,5 +1,5 @@
 ﻿
-@{ 
+@{
     var accountId = "";
     try
     {
@@ -47,6 +47,7 @@
                     {
                         <li>@Html.ActionLink("目前市場訂單", "Market", "Home", null, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("帳號資訊", "Info", "AccountInfo", null, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("餘額儲值", "Deposit", "AccountInfo", null, new { @class = "nav-link" })</li>
                         <li class="dropdown">
 
                             <a class="btn dropdown-toggle nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,15 +69,15 @@
 
                 <ul class="nav navbar-nav nav-item">
                     @if (Request.Cookies.AllKeys.Contains(FormsAuthentication.FormsCookieName))
-    {
-                <li class="right">@Html.ActionLink(accountId, "Info", "AccountInfo", null, new { @class = "nav-link" })</li>
-                <li class="right">@Html.ActionLink("登出", "SignOut", "Account", null, new { @class = "nav-link" })</li>
-}
-else
-{
-                <li>@Html.ActionLink("登入", "SignIn", "Account", null, new { @class = "nav-link" })</li>
-                <li> @Html.ActionLink("註冊", "SignUp", "Account", null, new { @class = "nav-link" }) </li>
-}
+                    {
+                        <li class="right">@Html.ActionLink(accountId, "Info", "AccountInfo", null, new { @class = "nav-link" })</li>
+                        <li class="right">@Html.ActionLink("登出", "SignOut", "Account", null, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("登入", "SignIn", "Account", null, new { @class = "nav-link" })</li>
+                        <li> @Html.ActionLink("註冊", "SignUp", "Account", null, new { @class = "nav-link" }) </li>
+                    }
 
                 </ul>
             </div>

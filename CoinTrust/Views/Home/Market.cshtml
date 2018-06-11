@@ -38,7 +38,10 @@
         <a href="#">依價格排序</a>
         <a href="#">依剩餘數量</a>
     </div>
-    <div class="col-md-auto mr-md-auto">目前最便宜價格 <a class="text-success h4 "><u><strong>@Low_Price</strong></u></a> NTD</div>
+    @if (Low_Price < 999999)
+    {
+        <div class="col-md-auto mr-md-auto">目前最便宜價格 <a class="text-success h4 "><u><strong>@Low_Price</strong></u></a> NTD</div>
+    }
     <div class="col-md-auto">
         目前的餘額： <strong class="text-success">@Amount NTD</strong>
         <a href="/Accountinfo/Deposit">儲值</a> /
